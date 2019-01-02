@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <style>
+    #btn{
+        width: 140px;
+        height: 30px;
+        line-height: 30px;
+        background: #00f;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        border-radius: 10p;
+        /* cursor属性定义个鼠标指针放在一个元素边界范围内时所用的光标形状 */
+        cursor: pointer;
+        margin-top: 30px;
+    }
+    </style>
+</head>
+<body>
+
+    <!-- 1.在HTML中绑定事件 -->
+    <!-- 鼠标事件 onclick: 鼠标点击时触发 -->
+    <input type="button" value="弹出" onclick="alert('我是按钮')">
+   <!-- onmouseover: 鼠标滑过时触发 -->
+   <!-- 鼠标滑过时调用mouseoverFn()函数 -->
+    <div id="btn" onmouseover="mouseoverFn(this, '#f00')" onmouseout="mouseoutFn(this, '#00f')">开始</div>
+    <script>
+    function mouseoverFn(btn, bgColor) {
+        // 鼠标滑过按钮时，按钮的背景变为红色
+        //console.log(btn); 
+        btn.style.background = bgColor;
+    }
+    function mouseoutFn(btn, bgColor) {
+        btn.style.background = bgColor;
+    }
+    </script>
+</body>
+</html>

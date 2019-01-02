@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Array</title>
+    </head>
+    <body>
+        <script>
+           var str = "hello world";
+           var upper = str.charAt(6).toUpperCase();
+           console.log(str.toUpperCase());// HELLO WORLD
+           console.log(upper);// W
+           var str2 = "WELCOME";
+           console.log(str2.toLowerCase()); //welcome
+           //border-left-color---> borderLeftColor 
+           function camelback(str) {
+               // 拆分成数组，然后改变大小写，然后join
+               var arr = str.split('-'), newStr = arr[0];
+               for(var i = 1, len = arr.length; i < len; i++) {
+                   var word = arr[i];
+                   newStr +=  word.charAt(0).toUpperCase() + word.substr(1);
+               }
+               return newStr;
+           }
+           var camelFormat = camelback("border-left-color");
+           console.log(camelFormat); //borderLeftColor
+        </script>
+    </body>
+    </html>
