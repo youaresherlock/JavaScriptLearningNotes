@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="开始" id = "startButton">
+    <div id="output">test</div>
+    <script>
+var output = document.getElementById("output");
+var startButton = document.getElementById("startButton");
+// Some magic to run function as WebWorker
+var workerBlob = new Blob(["(" + worker.toString() + ")()"], { type: 'text/javascript' }),
+    workerInstance;
+ 
+startButton.onclick = function () {
+    if (workerInstance) {
+        workerInstance.terminate(); //如果存在工作线程实例，先中断
+    }
+ 
+    output.innerHTML = ""; 
+    //参数是worker将执行的脚本的URL，它必须遵守同源策略
+    workerInstance = new Worker(URL.createObjectURL(workerBlob));
+    // 从worker接受消息
+    workerInstance.onmessage = function (e) {
+        output.innerHTML += "<div>" + e.data + '</div>';
+    };
+    //发送消息来start the worker
+    workerInstance.postMessage(null);
+};
+ 
+function worker() {
+    onmessage = function (e) {
+        var pi = 0,
+              n = 1;
+        for (var n = 1; ; n += 4) {
+            pi = pi + (4 / n) - (4 / (n + 2));
+ 
+            if ((n - 1) % 200000000 == 0) {
+                postMessage(pi);
+ 
+            }
+        }
+    };
+}
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var timerId = setInterval(function() {
+            console.log("你好");
+        }, 1000);
+
+        //10秒之后停止打印
+        setTimeout(function() {
+            clearInterval(timerId);
+        }, 10000);
+    </script>
+</body>
+</html>

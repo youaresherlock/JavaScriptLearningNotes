@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>screen</title>
+</head>
+<body>
+    <script>
+        //不包括windows任务栏，菜单栏
+        console.log("页面宽: " + screen.availWidth);
+        console.log("页面高: " + screen.availHeight);
+        /*
+        Gets the height of the content area of the browser w
+        indow including, if rendered, the horizontal scrollbar.
+        可以看到是窗口的宽高，但是如果渲染了垂直滚动条，则包含它
+        */
+        console.log("pageWidth: " + window.innerWidth);
+        console.log("pageHeight: " + window.innerHeight);
+    </script>
+</body>
+</html>

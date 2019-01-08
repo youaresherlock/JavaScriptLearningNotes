@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <script>
+        // 页面加载
+        window.onload = init;
+
+        //初始化
+        function init() {
+            //获取下拉菜单
+            var menu = document.getElementById("menu");
+            //给菜单绑定change事件, 一般作用于select或checkbox或radio
+            // menu.onchange = function(event) {
+            //     var bgcolor = event.target.value;
+            //     console.log(bgcolor);
+            //     //console.log(event.target === this); true
+            // }
+            menu.onchange = function(event) {
+                var bgcolor = this.value;
+                /*
+                HTMLSelectElement.options是一个HTMLOptionsCollection，
+                代表被这个select元素包含的所有option的集合
+                HTMLSelectElement.selectedIndex是选中的元素的索引
+                因此我们可以通过下面来访问
+                var bgcolor = menu.options[menu.selectedIndex].value;
+                */
+                // 设置body的背景色
+                if(bgcolor == "") {
+                    document.body.style.background = "#fff";
+                } else {
+                    document.body.style.background = bgcolor;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box">
+        请选择你喜欢的背景色:
+        <select name="" id="menu">
+            <option value="">请选择</option>
+            <option value="#f00">红色</option>
+            <option value="#0f0">绿色</option>
+            <option value="#00f">蓝色</option>
+            <option value="#ff0">黄色</option>
+            <option value="#ccc">灰色</option>
+        </select>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .box1{height: 400px; background: #ccc;}
+        .box2{height: 600px; background: #666;}
+    </style>
+</head>
+<body>
+    <div class="box1" id="top"></div>
+    <div class="box2"></div>
+    <input type="button" id="btn" value="返回顶部">
+    <script>
+        console.log(window.location.href);
+        console.log(location.hash);
+        var btn = document.getElementById("btn");
+        btn.onclick = function() {
+            //file:///C:/Users/Clarence/Desktop/JavaScriptLearningNotes/7.javascriptBOM%E5%AF%B9%E8%B1%A1/index6.html#
+            //点击按钮返回顶部 改变锚点为"#top"
+            location.hash = "#top";
+        }
+    </script>
+</body>
+</html>

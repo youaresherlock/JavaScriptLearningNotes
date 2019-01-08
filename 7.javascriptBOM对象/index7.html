@@ -1,0 +1,21 @@
+<!-- index7.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="刷新" id="reload">
+    <script>
+        // setTimeout(function() {
+        //     // location.href = "index6.html";
+        //     //window.location = "index6.html";
+        //     location.replace("index6.html"); //url不会添加到栈中，无回退到原始页面按钮
+        // }, 1000);
+        document.getElementById("reload").onclick = function() {
+            location.reload(false);
+        }
+    </script>
+</body>
+</html>

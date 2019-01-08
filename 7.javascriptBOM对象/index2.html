@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //字符串方式
+        // window.setTimeout("alert('hello')", 4000);
+
+        //匿名函数调用
+        // window.setTimeout(function() {
+        //     alert("hello");
+        // }, 4000);
+
+        //自定义函数
+        var fnCall = function() {
+            alert("world");
+        }
+        var timerId = setTimeout(fnCall, 4000);
+        clearTimeout(timerId);
+        
+    </script>
+</body>
+</html>

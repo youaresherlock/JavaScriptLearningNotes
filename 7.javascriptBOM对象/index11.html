@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <p>这是index11.html</p>
+    <p><a href="index12.html">index12.html</a></p>
+    <!-- 我们可以通过浏览器后退按钮，返回到index10.html页面 -->
+    <p><input type="button" value="后退" id="btn"></p>
+    <p><input type="button" value="前进" id="btn2"></p>
+   <script>
+        var btn = document.getElementById("btn");
+        var btn2 = document.getElementById("btn2");
+
+        //点击btn按钮时回到历史记录的上一步
+        btn.onclick = function() {
+            // history.back(); //history.go(-1)
+            history.go(-2);
+        }
+
+        //点击btn2按钮来到历史记录的下一步
+        btn2.onclick = function() {
+            history.forward(); // history.go(1);
+        }
+    </script>
+</body>
+</html>

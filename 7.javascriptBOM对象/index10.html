@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- index10.html -->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        请输入搜索关键字
+        <input type="text" placeholder="请输入搜索关键字" id="key"> 
+        <input type="button" value="搜索" id="search">
+    </div>
+    <a href="#" id="go">跳转</a>
+    <a href="index11.html">index11.html</a>
+    <script>
+
+        /*
+        注； encodeURIComponent()函数与encodeURI()函数的区别之处，
+        前者假定它的参数是URI的一部分，因此encodeURIComponent函数将
+        转义用于分割URI各个部分的标点符号
+        */
+        // 给按钮绑定事件
+        document.getElementById("search").onclick = function() {
+            // 获取搜索关键字并对它进行编码
+            var key = encodeURIComponent(document.getElementById("key").value);
+            //跳转到指定页面
+            location.href = "index9.html?search_key=" + key;
+        }
+        var sea = "搜索";
+        document.getElementById("go").href = "index.html?key=" + encodeURI(sea);
+        console.log(document.getElementById("go").href);
+    </script>
+</body>
+</html>
