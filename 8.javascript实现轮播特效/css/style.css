@@ -1,0 +1,259 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+/* web端unicode引用，不支持多色图标 */
+@font-face {font-family: 'iconfont';
+    src: url('../img/font/iconfont.eot');
+    src: url('../img/font/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../img/font/iconfont.woff') format('woff'),
+    url('../img/font/iconfont.ttf') format('truetype'),
+    url('../img/font/iconfont.svg#iconfont') format('svg');
+}
+
+ul{
+    list-style: none;
+}
+
+a:link,a:visited{
+    text-decoration: none;
+    color:#5e5e5e;
+}
+
+body{
+    font-family: "微软雅黑";
+    color: #14191e;
+    background-color: #FFFFF0;
+}
+
+.main{
+    width: 1200px;
+    height: 460px;
+    margin: 30px auto;
+    /* overflow属性指定如果内容溢出一个元素的框，会发生什么
+    默认值是visible */
+    overflow: hidden;
+    position: relative;
+}
+
+.banner{
+    width: 1200px;
+    height: 460px;
+    /*
+    relative定位: 
+    相对定位元素的定位是相对其正常位置 
+     */
+    overflow: hidden;
+    position: relative;
+}
+
+.banner-slide{
+    width: 1200px;
+    height: 460px;
+    /*
+    默认定位: static,HTML元素的默认值，即没有定位，元素出现在正常的流中
+    absolute定位:
+    绝对定位的元素的位置相对于最近的已定位的父元素，如果元素没有已定位的
+    父元素，那么它的位置相对于<html>
+     */
+    position: absolute;
+    background-repeat: no-repeat;
+    display: none; /*该元素不会被显示*/
+}
+
+.slide1{
+    /* 注意 background: 会覆盖各个默认属性，因此需要具体来设置 */
+    background-image: url("../img/bg1.jpg");
+}
+
+.slide2{
+    /* 注意 background: 会覆盖各个默认属性，因此需要具体来设置 */
+    background-image: url("../img/bg2.jpg");
+}
+
+.slide3{
+    /* 注意 background: 会覆盖各个默认属性，因此需要具体来设置 */
+    background-image: url("../img/bg3.jpg");
+}
+
+/* 选中所选的轮播图 */
+.slide-active{
+    display: block;
+}
+
+.button{
+    /* absolute元素会脱离文档流，如果设置偏移量，会影响其他元素的位置定位 */
+    position: absolute;
+    width: 40px;
+    height: 80px;
+    /* left属性规定元素的左边缘。该属性定义了定位元素左边距边界与其包含块左边界之间的偏移 */
+    left: 244px;
+    /* top属性规定元素的顶部边缘。该属性定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移 */
+    top: 50%;
+    margin-top: -40px;
+    background: url(../img/arrow.png) no-repeat center center;
+}
+
+.button:hover{
+    background-color: #333;
+    opacity: 0.8;
+    filter:alpha(opacity=80); /* IE8 及其更早版本 */
+}
+
+.prev{
+    transform:rotate(180deg);
+    -ms-transform:rotate(180deg); /* IE 9 */
+    -webkit-transform:rotate(180deg); /* Safari and Chrome */
+}
+
+.next {
+    /*需要设置left,因为上面css设置了*/
+    left: auto;
+    right: 0px;
+}
+
+.dots{
+    position: absolute;
+    right: 0px;
+    bottom: 24px;
+    text-align: right; /*文本的对齐方式*/
+    padding-right: 24px;
+}
+
+.dots span{
+    /* 圆点在同一水平线上 */
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    line-height: 12px;
+    background: rgba(7, 17, 27, 0.4);
+    margin-left: 8px;
+    /* 添加阴影, 阴影的大小时2px,阴影的颜色是白色，并且是内阴影
+    box-shadow: h-shadow v-shadow blur spread color inset */
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8) inset;
+    cursor: pointer;
+}
+
+.dots span.active{
+    box-shadow: 0 0 0 2px rgba(7, 17, 27, 0.4) inset;
+    background: #fff;
+}
+
+/* 导航菜单 */
+.menu-box{
+    width: 244px;
+    height: 460px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* rgba和opacity都能实现透明效果，但最大的不同是opacity作用于元素
+    以及元素内的所有内容的透明度，而rgba只作用于元素的颜色或其背景色 */
+    background: rgba(7, 17, 27, 0.4);
+    opacity: 0.5;
+    /* div.menu-box和div.banner都是动态定位(非static定位),因此要设置z-index堆叠 */
+    z-index: 1;
+}
+
+.menu-content{
+    width: 244px;
+    height: 454px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    padding-top: 6px;
+}
+
+.menu-item{
+    height: 64px;
+    line-height: 66px;
+    font-size: 16px;
+    /* 上下填充是0px 左右填充是5px */
+    padding: 0 24px; 
+    cursor: pointer;
+    position: relative;
+}
+
+.menu-item a:link, .menu-item a:visited{
+    color: #fff;
+}
+
+.menu-item a{
+    display: block;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0 8px;
+    height: 63px;
+}
+
+.menu-item:last-child a{
+    border-bottom: none;
+}
+
+.menu-item i{
+    /* 绝对定位的元素的位置相对于最近的已定位父元素，如果父元素没有已定位的父元素
+    我们应该让div.menu-item为相对定位 */
+    position: absolute; 
+    right: 32px;
+    font-size: 24px;
+    /* 定义了一个定位元素的上外边距边界与其包含块上边界之间的偏移 */
+    top: 2px;
+    font-family: "iconfont";
+    font-style: normal;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.sub-menu{
+    width: 730px;
+    height: 458px;
+    border: 1px solid #d9dde1;
+    background: #fff;
+    position: absolute;
+    left: 244px;
+    z-index: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.inner-box{
+    width: 100%;
+    height: 100%;
+    background: url(../img/fe.png) no-repeat;
+    display: none;
+}
+
+.sub-inner-box{
+    width: 652px;
+    margin-left: 40px;
+    overflow: hidden;
+}
+
+.title{
+    color: #f01414;
+    font-size: 16px;
+    line-height: 16px;
+    margin: 28px 0 30px 0;
+    font-weight: bold;
+}
+
+.sub-row{
+    margin-bottom: 25px;
+}
+
+.bold{
+    /* 数字定义由粗到细的字符，400等同与normal,而700等同与bold */
+    font-weight: bold; 
+}
+
+.mr10{
+    margin-right: 10px;
+}
+
+.ml10{
+    margin-left: 10px;
+}
+
+.hide{
+    display: none;
+}

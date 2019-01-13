@@ -4,10 +4,6 @@ ___
 ___
 ### 7. javascript practice
 文档地址: [MDN DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)
-#### 1. 图片轮播样式
-___
-#### 2. 轮播图上按钮样式
-___
-#### 3. 轮播图上的小圆点
-___
-#### 4. 切换图片的实现
+#### 1. DOM基础
+##### 1. DOM基本查找方法
+**(1) document.getElementById()**
