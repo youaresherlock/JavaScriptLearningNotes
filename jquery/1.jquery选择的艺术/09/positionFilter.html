@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>positionFilter</title>
+    <!-- jQuery中的筛选器/过滤器
+    位置筛选器、子元素筛选器、表单筛选器、内容筛选器、其他筛选器、自定义筛选器 -->
+    <!-- 位置筛选器 :first :gt(n) :lt(n) :last :even :odd :eq(n) 这里是jquery的选择器，css3不支持
+    n不能是表达式，必须是确切从0开始的数字 -->
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>list-01</li>
+        <li>list-02</li>
+        <li>list-03</li>
+        <li>list-04</li>
+        <li>list-05</li>
+        <li>list-06</li>
+        <li>list-07</li>
+        <li>list-08</li>
+        <li>list-09</li>
+        <li>list-10</li>
+    </ul>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function() {
+            // console.log($('li:first').addClass('highlight'));
+            // console.log($('li:last').addClass('highlight'));
+            // console.log($('li:even').addClass('highlight'));
+            // console.log($('li:odd').addClass('highlight'));
+            console.log($('li:eq(2)').addClass('highlight'));
+            // console.log($('li:gt(2)').addClass('highlight'));
+            // console.log($('li:lt(2)').addClass("highlight"));
+        })
+    </script>
+</body>
+</html>

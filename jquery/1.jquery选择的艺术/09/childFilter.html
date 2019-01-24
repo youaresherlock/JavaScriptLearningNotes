@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>childFilter</title>
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li>list-01</li>
+    <li>list-02</li>
+    <li>list-03</li>
+    <li>list-04</li>
+    <li>list-05</li>
+    <li>list-06</li>
+    <li>list-07</li>
+    <li>list-08</li>
+    <li>list-09</li>
+    <li>list-10</li>
+</ul>
+
+<script src="../../vendor/jquery-1.12.4.js"></script>
+<script>
+    // 子元素选择器
+    // first-of-type $('p:first-of-type')选取属于其父元素的第一个<p>元素的每个<p>元素
+    //:nth-of-tpe(n)选择器选取属于其父元素的特定类型的第n个子元素的所有元素
+    $(function () {
+        // consolelog($('li:first-child').addClass('highlight'));
+        // console.log($('li:last-child').addClass('highlight'));
+        console.log($('li:first-of-type').addClass('highlight'));
+        // console.log($('li:last-of-type').addClass('highlight'));
+        // console.log($('li:nth-child(2)').addClass('highlight'));
+        // console.log($('li:nth-child(2n)').addClass('highlight'));
+        // console.log($('li:nth-child(odd)').addClass('highlight'));
+        // console.log($('li:nth-child(even)').addClass('highlight'));
+    });
+</script>
+</body>
+</html>

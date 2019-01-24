@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>otherFilter</title>
+    <!-- 其他筛选器 -->
+    <!-- 
+    :lang(language) 选择器选取指定语言属性(lang)的元素，:lang(en),值可以是en-us,en类似
+    :not(selector) $("input:not(:empty)")所有不为空的input元素
+    :root :root选择器选取文档的根元素 
+    :target 选择由文档URI的格式化识别码表示的目标元素 http://example.com/#foo,则$(':target')将选择<p id="foo">元素
+    :hidden 选择所有指定的隐藏元素
+    :visible 所有可见的元素
+    :header 所有标题元素<h1> - <h6>
+    :animated 选择器选取当前的所有动画元素
+     -->
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <!-- lang属性设置或返回元素的语言 -->
+    <p id="foo" lang="en-US">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque, eius.</p>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, quo.</p>
+    <input type="text">
+    <!-- type="hidden"定义隐藏输入字段 -->
+    <input type="hidden">
+    <!-- 
+        visibility属性设置元素是否应该是可见的
+        visibility属性允许作者显示或隐藏一个元素.
+        display:none将隐藏整个元素，如果设置visibility:hidden,元素的内容将不
+        可见，但元素仍保持原来的位置和大小
+     -->
+    <p style="display: none">Lorem ipsum dolor sit amet, consectetur adipisic
+        ing elit. Doloremque, excepturi molestiae odio officiis optio praesentium recusandae similique soluta vel velit? Enim et iste neque quaerat quis quisquam quo rem vel.</p>
+    <p style="visibility: hidden">Lorem ipsum dolor sit amet, consectetur adipis
+        icing elit. Doloremque, excepturi molestiae odio officiis optio praesent
+        ium recusandae similique soluta vel velit? Enim et iste neque quaerat qu
+        is quisquam quo rem vel.</p>
+    <p style="opacity: 0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, excepturi molestiae odio officiis optio praesentium recusandae similique soluta vel velit? Enim et iste neque quaerat quis quisquam quo rem vel.
+    </p>
+    <h1>h1. 标题</h1>
+    <h2>h2. 标题</h2>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function() {
+            // console.log($(':lang(en)').addClass('highlight'));
+            // console.log($('p:not(#foo)').addClass('highlight'));
+            // console.log($(':root').addClass('highlight'));
+            // console.log($('p:target').addClass('highlight'));
+            // setTimeout(function(){
+            //     //在chrome, Firefox等浏览器中，获取url hash会延迟一会儿，所以
+            //     //直接在document ready中获取会获取不到
+            //     //我们延时获取location.hash
+            //     console.log($('p:target').addClass('highlight')); //将url加#foo
+            // }, 1000);
+            console.log($(':hidden').addClass('highlight'));
+            // console.log($(':visible').addClass('highlight'));
+            // console.log($(':header').addClass('highlight'));
+        });
+    </script>
+</body>
+</html>

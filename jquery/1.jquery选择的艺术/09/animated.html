@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animated</title>
+    <style>
+        div.box{
+            background: yellow;
+            border: 1px solid #aaa;
+            width: 80px;
+            height: 80px;
+            margin: 0 5px;
+            float: left;
+        }
+
+        div.colored{
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <button id="run">Run</button>
+
+    <div class="box"></div>
+    <div id="mover" class="box"></div>
+    <div class="box"></div>
+
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+         $(function(){
+            //  toggleClass()方法对添加和移除被选元素的一个或多个类进行切换
+            //该方法检查每个元素中指定的类，如果不存在则添加类，如果已设置则删除之。达到切换效果
+            $("#run").click(function(){
+                $("div:animated").toggleClass("colored");
+            });
+
+            // slideUp()方法以滑动方式隐藏被选元素 callback为方法执行完要执行的函数，此处为死循环
+            function animateIt() {
+                $("#mover").slideToggle("slow", animateIt);
+            }
+
+            animateIt();
+         });
+    </script>
+</body>
+</html>

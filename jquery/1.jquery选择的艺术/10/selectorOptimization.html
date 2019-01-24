@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>selectorOptimization</title>
+</head>
+<body>
+    <div>
+        <ul id="list" class="list">
+            <li>list-01</li>
+            <li class="item2">list-02</li>
+            <li>list-03</li>
+            <li class="item4">list-04</li>
+            <li>list-05</li>
+            <li>list-06</li>
+            <li>list-07</li>
+            <li>list-08</li>
+            <li>list-09</li>
+            <li>list-10</li>
+        </ul>
+    </div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        /*
+        统计一段代码的执行时间时，可以使用console.time方法与console.timeEnd方法
+        其中console.time方法用于标记开始时间,console.timeEnd方法用于标记结束时间
+        ，并且将结束时间与开始时间之间经过的毫秒数在控制台中输出.需使用同一个字符串参数
+        */
+       //比较各种方法执行一万次时间
+        function logTime(cb){
+            console.time('logTime');
+            if(typeof cb === "function"){
+                for(var i = 0; i < 10000; i++){
+                    cb();
+                }
+            }
+            console.timeEnd("logTime");
+        }
+
+        $(function() {
+               logTime(function () {
+                   $("ul li:even");// slow
+               })
+               logTime(function () {
+                   $("ul li:nth-child(odd)");// better
+               })
+        //        logTime(function () {
+        //            document.querySelectorAll("ul li:nth-child(odd)"); // best
+        //        })
+        //        logTime(function () {
+        //            $(document.querySelectorAll("ul li:nth-child(odd)")); // better
+        //        })
+
+        //------------------
+
+        //        logTime(function () {
+        //            $('div ul li.item2');// slow
+        //        })
+        //        logTime(function () {
+        //            $('li.item2');// better
+        //        })
+
+        //------------------
+
+        //        logTime(function () {
+        //            $('.list li.item2'); // slow
+        //        })
+        //
+        //        logTime(function () {
+        //            $('#list li.item2'); // better
+        //        })
+
+        //------------------
+
+        //        logTime(function () {
+        //            $('ul.list .item2'); // slow
+        //        })
+        //
+        //        logTime(function () {
+        //            $('.list li.item2'); // better
+        //        })
+
+        //------------------
+
+        //        logTime(function () {
+        //            $('ul'); // slow
+        //        })
+        //
+        //        logTime(function () {
+        //            $('.list'); // better
+        //        })
+
+        //------------------
+
+        // logTime(function() { // slow
+        //     $('#list .item2');
+        //     $('#list .item4');
+        // });
+
+        // logTime(function() { // better
+        //     var ul = $('#list'); //缓存下来
+        //     ul.find('.item2');
+        //     ul.find('.item4');
+        // });
+
+        });
+    </script>
+</body>
+</html>

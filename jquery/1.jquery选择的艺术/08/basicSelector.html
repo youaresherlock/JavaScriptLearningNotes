@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- jQuery中的基本选择器
+ID选择器、类选择器、元素选择器、后代选择器、属性选择器 -->
+<head>
+    <meta charset="UTF-8">
+    <title>basicSelector</title>
+    <style>
+        .highlight{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>h1, 标题</h1>
+    <h2>h2, 标题</h2>
+
+    <p id="p1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, quae?</p>
+
+    <ul class="list">
+        <li>list1</li>
+        <li>list2</li>
+        <ul>
+            <li>list2-1</li>
+            <li>list2-2</li>
+            <li>list2-3</li>
+        </ul>
+        <li>list3</li>
+    </ul>
+
+    <a href="http://www.baidu.com" target="_black">百度</a>
+    <a href="http://www.163.com">网易</a>
+    <a href="#">本地</a>
+
+    <p data-id="1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet fugit illum libero, minus odio quas
+            repellat
+            repellendus similique unde voluptatem.</p>
+        
+    <p data-id="2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet fugit illum libero, minus odio quas
+        repellat
+        repellendus similique unde voluptatem.</p>
+
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            // console.log($('#p1').addClass('highlight'));
+            // console.log($('.list').addClass('highlight'));
+            // console.log($('a[href="http://www.baidu.com"]').addClass('highlight'));
+            // console.log($('a[href*="www"]').addClass('highlight'));// 包含"www"
+            // console.log($('a[href^="http"]').addClass('highlight'));// 以"http"开头"
+            // console.log($('a[href$="com"]').addClass('highlight')); // 以"com"结尾
+            // $("[href]")选取带有href属性的元素
+            // console.log($('a[href][target]').addClass('highlight'));
+            console.log($('a[href!="http://www.baidu.com"]').addClass('highlight')) //jQuery独有 没有包含此网址的a标签
+            console.log($('p[data-id="1"]').addClass('highlight')); //属性选择器
+        });
+    </script>
+</body>
+</html>
