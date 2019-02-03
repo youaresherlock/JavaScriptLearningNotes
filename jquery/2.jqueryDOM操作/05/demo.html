@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    筛选和遍历jQuery对象
+    添加元素
+    .add(selector) Create a new jQuery object with elements added to the set of matched elements
+    过滤元素 
+    1. .not(selector) Remove elements from the set of matched elements.
+    2. .not(function) A function used as a test for each element in the set. It 
+    accepts two arguments, index, which is the element's index in the jQuery 
+    collection, and element, which is the DOM element. Within the function, 
+    this refers to the current DOM element.
+    3. .filter(selector)  Reduce the set of matched elements to those tha
+    t match the selector or pass the function’s test.
+    4. .has(selector) Reduce the set of matched elements to those that ha
+    ve a descendant that matches the selector or DOM element.
+    获取子集
+    slice(start[, end]) Reduce the set of matched elements to a subset specified by a range of indices.
+    转换元素
+    map(callback) Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.
+    遍历元素
+    each(iterator)  Iterate over a jQuery object, executing a function for each matched element.
+    jQuery对象的其它操作
+    is(selector) Check the current matched set of elements against a selector, element, or jQuery object and return true if at least one of these elements matches the given arguments.
+    破坏性操作： 任何对jQuery对象进行改变的操作
+    end() End the most recent filtering operation in the current chain and return the set of matched elements to its previous state.
+    addBack([selector]) Add the previous set of elements on the stack to the current set, optionally filtered by a selector.
+-->
+<body>
+    <div id="box1">
+        <div id="box2">
+            <div id="box3">
+                <p id="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, rem?</p>
+                <ul>
+                    <li class="item1">item1</li>
+                    <li class="item2">item2</li>
+                    <li class="item3">item3</li>
+                    <li class="item4">item4</li>
+                    <li class="item5">item5</li>
+                    <li class="item6">item6</li>
+                    <li class="item7">item7</li>
+                    <li class="item8">item8
+                        <ul></ul>
+                    </li>
+                    <li class="item9">item9</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+    $(function() {
+        console.log($('.item1, .item2'));
+        console.log($('.item1').add('.item2'));
+
+        console.log($('li').not('.item4'));
+        console.log($('li').not(function(index){
+            // console.log(this); //DOM Element
+            return $(this).hasClass('item4');
+        }));
+        console.log($('li').filter('.item4'));
+
+        console.log($('li').has('ul')); //将拥有ul子代的li标签筛选出来
+
+        console.log($('li').slice(0));
+        console.log($('li').slice(3, 5));// li.item4 li.item5
+        console.log($('li').slice(-2)); //li.item8 li..item9
+
+        console.log($('div').map(function(index, domElemenet){
+            return this.id; // return domElement.id;
+        })); //jQuery对象 box1 box2 box3 
+
+        console.log($('div').each(function(index, domElement){
+            if(this.id === 'box1'){
+                return true;
+            }
+            this.title = this.id;
+            // You can stop the loop from within the callback function by returning false.
+        }));
+
+        console.log($('#box3').children().is('p')); //含有则返回true
+
+        console.log($('#box3').find('.item4').css('color', 'red')
+        .end().find('.item6').css('color', 'blue'));
+
+        console.log($('#box3').find('.item4').end());
+
+        console.log($('.item4').nextUntil('.item6').addBack()
+        .css('color', 'orange'));
+    });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    包裹元素
+    .wrap(wrappingElement)  Wrap an HTML structure around each element in the set of matched elements.
+    .wrapAll(wrappingElement) Wrap an HTML structure around all elements in the set of matched elements.
+    .wrapInner(wrapper) Wrap an HTML structure around the content of each element in the set of matched elements.
+
+    取消包裹
+    .unwrap() Remove the parents of the set of matched elements from the DOM, leaving the matched elements in their place
+ -->
+<body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, veritatis.</p>
+    <div class="item"></div>
+    <div>
+    <a href="#">link1</a>
+    <a href="#">link2</a>
+    <a href="#">link3</a>
+    <a href="#">link4</a>
+    <a href="#">link5</a>
+    <a href="#">link6</a>
+    <a href="#">link7</a>
+    </div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            // var element = $('a');
+            // element.wrap('<div class="box"></div>');
+            // element.wrap($('.item'));
+
+            var elements = $('a');
+
+            // elements.wrap('<p></p>'); //每个元素包裹
+            // elements.wrapAll('<p></p>'); //整体包裹
+            elements.wrapInner($('.item'));// 内容包裹在div.item中
+        });
+    </script>
+</body>
+</html>

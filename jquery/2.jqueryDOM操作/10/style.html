@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- 
+        获取或设置style
+        .css(name, value) 
+        name: Type: String A CSS property name.
+        value Type: String or Number A value to set for the property.
+        .css(properties) Type: PlainObject 
+        An object of property-value pairs to set
+
+        .css(propertyName, function) 
+        propertyName Type:String A Css property name
+        function(Interger index, String value)
+
+        .css(propertyName) Get the computed style properties for the first element in the set of matched elements.
+        propertyName: Type:Array An array of one or more CSS properties 
+
+        获取或设置元素尺寸
+        设置尺寸  设置位置
+        不包含内边距和边框及外边距 width(value) height(value) 
+        包含内边距, 不包含边框和外边距 innerHeight(value) innerWidth(value)
+        -----------------------------------------------------------------
+        包含内边距和边框，外边距? outerWidth(value) outerHeight(value)
+        value为true包含外边距
+    -->
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+       .box{width: 100px; height: 100px; background-color: #ccc;}
+    </style>
+</head>
+<body>
+    <div class="box" id="demo">div</div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            var element = $('#demo');
+
+            element.css('width', 200); //element.csss('width', '200px');
+            element.css({
+                //注意,对于多个单词组成的属性名, 可以使用小驼峰写法或者'xx-xxx'写法都可行
+                'background-color': 'red',
+                height: '200px', // height: 200
+                border: '10px solid #000',
+                margin: 60,
+                padding: 30,
+                // width: '+=50'
+                width: '30%'
+            });
+
+            element.css('height', function(index, value){
+                console.log(value); //200px
+                return parseInt(value, 10) + 50;
+            });
+            console.log(element.css('height')); //250px
+            console.log(element.css(['height', 'width', 'border']));
+
+            console.log(element.width()); //365 将百分比转换成px
+            console.log(element.height()); //250 
+            console.log(element.innerWidth()); 
+            console.log(element.innerHeight()); 
+            console.log(element.outerWidth()); 
+            console.log(element.outerHeight()); //加入true会包含外边距
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    操作元素属性
+    获取属性的值: prop(name)
+    设置属性的值： prop(name, value) prop(properties)
+    删除属性: removeProp(name)
+ -->
+<body>
+    <!-- 元素中的是特性，通用的是属性 -->
+    <img src="../logo.jpg" alt="jQuery logo" id="logo" class="img-jquery" title="jQuery logo">
+    <img src="../logo.jpg" alt="jQuery logo" id="logo2" class="img-jquery2" title="jQuery logo">
+    <input type="checkbox" id="check" tabIndex="1" style="width:50px; height:50px;" title="Check this!"
+    description="just a checkbox">
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        var img = $('img');
+        var checkbox = $('#check');
+
+        console.log(checkbox.prop('checked'));//false
+        console.log(checkbox.get(0).checked); //false 需要转化成DOM对象，获取到属性值
+        console.log(checkbox.attr('checked')); //undefined
+        console.log(checkbox.attr('description')); //just a checkbox
+        console.log(checkbox.prop('description')); //undefined
+        console.log(checkbox.prop('checked', true)); //不改变html结构，属性值设置为true
+
+        checkbox.removeProp('title');
+    </script>
+</body>
+</html>

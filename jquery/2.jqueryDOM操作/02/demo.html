@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+    <ul>
+        <li>item-1</li>
+        <li>item-2</li>
+        <li>item-3</li>
+        <li>item-4</li>
+        <li>item-5</li>
+        <li id="item6">item-6</li>
+        <li>item-7</li>
+        <li>item-8</li>
+        <li>item-9</li>
+    </ul>
+
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function() {
+            /*
+            提取元素
+            [index]返回DOM元素
+            get([index])返回DOM元素或元素集合
+            eq(index)返回jQuery对象
+            first()
+            last()
+            toArray()将jQuery对象转换成DOM数组
+            */
+            var elements = $('li');
+            console.log(elements.length);
+
+            // var elements2 = $('div'); //空的jQuery对象，页面中不存在
+            // console.log(elements2[0].style.color = "red"); //error
+            // console.log(elements.eq(0).addClass('blue')); // right
+
+            console.log(elements[0]);
+            console.log(elements.get(0));
+            console.log(elements.get()); //DOM数组集合
+            console.log(elements.get(-1)); //最后一个元素 9
+            console.log(elements.get(100)); //返回undefined
+            console.log(elements.eq(0)); //jquery对象
+            console.log(elements.eq()); //不加参数不返回
+            console.log(elements.eq(-1)); //获取最后一个
+            console.log(elements.first());
+            console.log(elements.last());
+            console.log(elements.toArray());
+        });
+    </script>
+</body>
+</html>

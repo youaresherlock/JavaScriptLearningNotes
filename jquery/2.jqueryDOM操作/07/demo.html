@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    jquery中操作元素的特性 attribute特性   property属性
+    获取特性的值: attr(attributeName) 
+    设置特性的值: attr(attributeName, value) attr(attributes) attr(attributeName, function)
+    删除特性: removeAttr(attributeName) An attribute to remove; as of version 1.7, it can be a space-separated list of attributes.
+    可以通过空格分割特性
+ -->
+<body>
+    <img id="logo" src="../logo.jpg" alt="jQuery logo" title="jQuery logo" />
+    <img id="logo2" src="../logo.jpg" alt="jQuery logo" class="img-jquery2" title="jQuery logo" />
+    <input type="checkbox" id="check" tabindex="1" style="width:50px; height: 50px;" 
+    title="Check this!" description="just a checkbox"/>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            var img = $('img');
+            var checkbox = $('#check')
+
+            console.log(img.attr('title')); //可以传入大小写字符串，会转化成小写字符串
+            console.log(img.attr('title', '123'));
+            checkbox.checked = true; //属性值发生改变
+            console.log(checkbox.attr('checked')); //undefined
+            console.log(checkbox.checked); //true
+            // .attr(atttributes) An object of attribute-value pairs to set.
+            img.attr({
+                title: 'new title',
+                alt: 'new alt',
+                tabINDEX: '2'
+            });
+            //.attr(attributeName, function) The name of the attribute to set.
+            img.attr('title', function(index, previousValue){
+                console.log(previousValue);
+                return previousValue + 'new'; //原先的值
+            });
+
+            img.removeAttr('title alt class');
+            console.log(img.attr('title')); //undefined
+            
+        });
+    </script>
+</body>
+</html>

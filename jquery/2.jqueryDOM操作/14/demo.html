@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+从DOM中移除元素
+.remove([selector]) 会删除jQueryObject的事件和数据
+.detach([selector]) 移除后保存了对象的事件和数据
+The .detach() method is the same as .remove(), except that .
+detach() keeps all jQuery data associated with the removed elements. 
+This method is useful when removed elements are to be reinserted into 
+the DOM at a later time.
+
+.empty()将元素内容清除(包括子节点和文本结点)，保留元素本身
+This method removes not only child (and other descendant) elements, but 
+also any text within the set of matched elements. This is because, according 
+to the DOM specification, any string of text within an element is considered 
+a child node of that element. Consider the following HTML:
+
+
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+    p {
+        font-size: 12px;
+    }
+    </style>
+</head>
+
+<body>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt, veritatis.</p>
+    <div class="item"></div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+    $(function() {
+        var element = $('p');
+
+        element.click(function(){
+            $(this).css('font-size', '+=5');
+        }).data('demo', 'demo1');
+
+        console.log(element.data()); //Object {demo: "demo1"}
+        element.remove();
+        
+        element.appendTo($('.item'));// 事件删除掉了 
+        console.log(element.data());// Object {} 数据删除掉了
+    });
+    </script>
+</body>
+
+</html>

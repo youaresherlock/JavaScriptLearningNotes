@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- 
+        处理表单元素值
+        Get the current value of the first element in the set of matched 
+        elements or set the value of every matched element.
+        .val() 获取值 get the current value of the first element in the set of matched elements.
+        .val(value) 设置值  Set the value of each element in the set of matched elements.
+     -->
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+    <form>
+        <p><input type="text" name="text"></p>
+        <p>
+            <input type="radio" name="radio" value="1">radio1
+            <input type="radio" name="radio" value="2">radio2
+        </p>
+        <p>
+            <input type="checkbox" name="checkbox" value="1">checkbox1
+            <input type="checkbox" name="checkbox" value="2">checkbox2
+        </p>
+        <p>
+            <select name="select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </p>
+        <p>
+            <!-- multiple 允许在下拉列表中进行多选
+            按住Ctrl(windows)/Command(Mac)按钮来选择多个选项 -->
+            <select name="multiSelect"  multiple>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+        </p>
+    </form>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            // console.log($('[name="test"]').val()); //undefined
+            console.log($('[name="radio"]:checked').val());//undefined console.log($('[name="radio"]').val()); 获取的是第一个元素的value
+            console.log($('[name="select"]').val()); //1
+            // console.log($('[name="select"] option:selected').val());//1 
+
+            console.log($('[name="multiSelect"]').val()); //同时选中三个，获取多个值数组["1", "2", "3"]
+
+            //复选框 checkbox
+            // console.log($('[name="checkbox"]:checked').val()); //都选中的话结果为1 .val()只能获取两个元素中第一个元素的值
+            //可以使用.map(callback)来获得多选框的所有选择值 
+            // Pass each element in the current matched set through a function, producing a new jQuery object containing the return values.
+            console.log($('[name="checkbox"]:checked').map(function(index, domElement){
+                return $(this).val();
+            }).toArray()); // 返回的是一个jQuery对象，由返回的值组成的
+            // .toArray()是将jQuery set中所有包含的值组成数组，也可以使用.get()
+
+            //jquery is like a shit, operating badly
+            //设置值
+            console.log($('[name="text"]').val("123")); //文本框
+            console.log($('[name="select"]').val("1")); //下拉单选
+            console.log($('[name="radio"]').val(["2"])); //单选框 设置参数必须是数组
+            console.log($('[name="multiSelect"]').val([1,2]));
+            console.log($('[name="checkbox"]').val([1,2]));
+        });
+    </script>
+</body>
+</html>

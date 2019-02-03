@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    获取或设置元素内容
+    .html()  Get the HTML contents of the first element in the set of matched elements.
+    .html(content) Set the HTML contents of each element in the set of matched elements.
+    .text()  Get the combined text contents of each element in the set of matched elements, including their descendants.
+    .text(content) Set the content of each element in the set of matched elements to the specified text.
+    content: String or Number or Boolean 
+    The text to set as the content of each matched element. When Number or 
+    Boolean is supplied, it will be converted to a String representation.
+ -->
+<body>
+    <ul>
+        <li class="item1">item-1
+            <ul>test</ul>
+        </li>
+        <li class="item2">item-2</li>
+        <li class="item3">item-3</li>
+        <li class="item4">item-4</li>
+        <li class="item5">item-5</li>
+        <li class="item6">item-6</li>
+        <li class="item7">item-7</li>
+        <li class="item8">item-8</li>
+        <li class="item9">item-9</li>
+    </ul>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            var elements = $('li');
+
+            console.log(elements.html());
+            console.log(elements.text());
+            console.log(elements.get(0).innerText, elements.get(0).innerHTML);
+
+            elements.html('<stong>hello world</strong>');
+            // elements.text('<stong>hello world</strong>');
+            // console.log(elements.eq(0).html('<script>alert(123)<\/script>'));
+
+        });
+    </script>
+</body>
+</html>

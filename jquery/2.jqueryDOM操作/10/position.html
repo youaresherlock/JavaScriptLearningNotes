@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+        body{margin: 0; padding: 0;} 
+        .box{overflow: hidden; position: relative; width: 100px; height: 100px; background: #ccc; margin: 20px;}
+        .item{position: relative; width: 50px; height: 50px; background: red;
+        margin: 20px; top: 10px; left: 15px;} 
+    </style>
+</head>
+<!-- 
+    获取或设置位置和滚动
+    .offset(coordinates) 对象集合中第一个元素
+    Get the current coordinates of the first element, 
+    or set the coordinates of every element, in the set of 
+    matched elements, relative to the document.
+ -->
+<body>
+    <div class="box" id="demo">
+        <div class="item"></div>
+    </div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            var demo = $('#demo');
+            var element = $('.item');
+
+            console.log(element.offset()); //Object {top: 20, left: 20}
+            console.log(element.position()); //Object {top: 10, left: 15}
+
+        });
+    </script>
+</body>
+</html>

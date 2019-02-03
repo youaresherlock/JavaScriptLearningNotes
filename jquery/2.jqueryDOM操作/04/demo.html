@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+<!-- 
+    通过关系查找jQuery对象的方法
+    兄弟姐妹元素查找方法
+    next([selector]) Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.
+    nextAll([selector]) Get all following siblings of each element in the set of matched elements, optionally filtered by a selector
+    nextUntil([selector]) Get all following siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object passed.
+    prev([selector]) Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector
+    prevAll([selector]) Get all preceding siblings of each element in the set of matched elements, optionally filtered by a selector.
+    prevUntil([selector]) Get all preceding siblings of each element up to but not including the element matched by the selector, DOM node, or jQuery object.
+    siblings([selector]) Get the siblings of each element in the set of matched elements, optionally filtered by a selector.
+ -->
+<div id="box1">
+    <div id="box2">
+        <div id="box3">
+            <p id="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, rem?</p>
+            <ul>
+                <li class="item1">item1</li>
+                <li class="item2">item2</li>
+                <li class="item3">item3</li>
+                <li class="item4">item4</li>
+                <li class="item5">item5</li>
+                <li class="item6">item6</li>
+                <li class="item7">item7</li>
+                <li class="item8">item8
+                    <ul></ul>
+                </li>
+                <li class="item9">item9</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="../../vendor/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        console.log($('.item4').next());//li.item5 同console.log($('.item4').next('li'));
+        console.log($('.item4').nextAll('li'));
+        //selector如果选择不到则相当于一直找
+        console.log($('.item4').nextUntil('li.item7')); //不包括li.item7 
+        
+        console.log($('.item4').prev());
+        console.log($('.item4').prevAll('li'));
+        console.log($('.item4').prevUntil('li.item1')); 
+
+        console.log($('.item6').siblings('li')); //同级所有的兄弟姐妹取出，不包括本身
+    });
+</script>
+</body>
+</html>

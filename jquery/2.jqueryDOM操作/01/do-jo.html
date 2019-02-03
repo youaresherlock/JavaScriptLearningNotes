@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 
+        DOM对象和jQuery对象
+        DOM元素为渲染出来的元素，jQuery是对DOM元素的包装
+        检测DOM Object: if(obj.nodeType)
+        检测jQuery Object: if(obj.jquery)
+        转换:
+        var jqueryObj = $(domObj);
+        var domObj = jqueryObj.get([index]);
+     -->
+    <meta charset="UTF-8">
+    <title>jQuery Object vs jQuery Object</title>
+</head>
+<body>
+    <div id="div">div</div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function() {
+             var DOMObject = document.getElementById("div");
+             var jQueryObject = $('#div');
+             console.log(DOMObject);
+             console.log(jQueryObject);
+
+             console.log(DOMObject.nodeType); //1
+             console.log(jQueryObject.jquery); //版本号
+
+             console.log($(DOMObject));
+             console.log(jQueryObject.get(0));
+
+             //创建html元素 $('<div>Hello</div>')
+             var div = $('<div>Hello</div>');
+             console.log(div); //jQuery对象
+
+             div.appendTo('body');
+
+             //追加属性
+             var link1 = $('<a>', {
+                 text: 'baidu',
+                 href: 'http://www.baidu.con',
+                 target: '_black',
+                 title: 'goto baidu'
+             });
+             link1.appendTo('body');
+
+             var link2 = $('<a>baidu</a>').attr({
+                 href: 'http://www.baidu.con',
+                 target: '_black',
+                 title: 'goto baidu'
+             });
+             link2.appendTo('body');
+        });
+    </script>
+</body>
+</html>

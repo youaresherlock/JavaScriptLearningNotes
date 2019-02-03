@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    操作元素的特性、属性和数据
+    特性attributes vs 属性properties
+    Elements in HTML have attributes; these are additional values that configure 
+    the elements or adjust their behavior in various ways to meet the criteria 
+    the users want.
+    参考: https://developer.mozilla.org/en-US/docs/Web/API/Element
+    Properties中包含Element.attributes
+    Returns a NamedNodeMap object containing the assigned attributes of the corresponding HTML element.
+    key=value形式(name是key,nodeValue是value)
+    特性attributes vs 属性 properties
+    如果attributes是本来在DOM对象中就存在的，attributes和properties的值会同步;
+    如果attributes是本来在DOM对象中就存在的，但是类型为Boolean,那么attributes和properies
+    的值不会同步
+    如果attributes不是DOM对象内建的属性，attributes和properties的值不会同步
+ -->
+<body>
+    <img src="../logo.jpg" alt="jQuery logo" id="logo" class="img-jquery" title="jQuery logo">
+    <!-- tabindex属性规定当使用"tab"键进行导航时元素的顺序 -->
+    <input type="checkbox" checked="true" id="check" tabindex="10" style="width:50px;height:50px;" title="Check this!" description="just a checkbox">
+
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(document).ready(function(){
+            var img = document.getElementById('logo');
+
+            console.log(img.attributes);
+            console.log(img.getAttribute('class'));
+            console.log(img.className);
+
+            var checkbox = document.getElementById('check');
+            console.log(checkbox.getAttribute('tabindex')); //字符串'1'
+            console.log(checkbox.tabIndex); //number 1
+            console.log(checkbox.getAttribute('style'));
+            /*
+            HTMLElement.style是一个css样式描述对象:
+            Is a CSSStyleDeclaration, an object representing the declarations of an element's 
+            style attributes. 
+            */
+            console.log(checkbox.style); //元素所有的样式值
+            console.log(checkbox.getAttribute('checked')); //null
+            console.log(checkbox.checked); //true
+
+            checkbox.title = 'new title';
+            checkbox.setAttribute('title', 'another title');// 元素属性和特性会动态链接，一致
+            console.log(checkbox.title, checkbox.getAttribute('title'));
+
+            //不会同步
+            console.log(checkbox.checked); //true 属性值为布尔型，特性值为null
+            //如果在html中写成checked="true"则打印出来true是布尔型,getAttribute('checked')为字符串类型true
+            //我们将input中属性改成checked = "true",然后改变其一，并不会同时改变
+            checkbox.checked = false;
+            console.log(checkbox.checked, checkbox.getAttribute('checked')); ///false "true"属性和特性没有同步
+
+            console.log(checkbox.description); //undefined
+            console.log(checkbox.getAttribute('description')); //just a checkbox
+            checkbox.description = 'new description'; //属性改变，特性并不会改变
+            console.log(checkbox.description);// new description
+            console.log(checkbox.getAttribute('description')); //just a checkbox
+
+            console.log(img.src); //绝对地址  
+            console.log(img.getAttribute('src')); //设置地址
+            
+            //属性和特性的名称不同 class为js保留字，因此要为className
+            console.log(img.className);
+            console.log(img.getAttribute('class'));
+        });
+    </script>
+</body>
+</html>

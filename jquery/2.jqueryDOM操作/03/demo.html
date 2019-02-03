@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- 通过关系查找jQuery对象 -->
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<body>
+    <div id="box">
+        <div>
+            <div>
+                <p id="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic, rem?</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function() {
+            var count1 = $('#info').parents().length; // 5
+            var count2 = $('#info').parents('div').length;//3
+            var count3 = $('#info').parent().length; //1 直接父元素
+
+            console.log(count1);
+            console.log(count2);
+            console.log(count3);
+
+            var element = $('#box').children(); //直接子元素
+            // 子元素选择器(child selectors)只能选择作为某元素子元素的元素
+            var element2 =  $('#box>*');
+            var element3 = $('#info').children(); //不返回文本结点，是一个空的jQueryObject
+            // Get the children of each element in the set of matched elements, 
+            //including text and comment nodes.
+            var element4 = $('#info').contents();
+            console.log(element);
+            console.log(element2);
+            console.log(element3);
+            console.log(element4);
+            console.log($('#box').contents());
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+复制和替换元素
+.clone( [withDataAndEvents ] [, deepWithDataAndEvents ] )
+withDataAndEvents(default: false) Type: Boolean A Boolean indicating whether event handlers and data should be copied along with the elements.
+deepWithDataAndEvents(default: value of withDataAndEvents) Type: Boolean 
+A Boolean indicating whether event handlers and data for all children of 
+the cloned element should be copied. By default its value matches the 
+first argument's value (which defaults to false). 
+
+.replaceWith(newcontent)
+Replace each element in the set of matched elements with the provided 
+new content and return the set of elements that was removed.
+ -->
+<body>
+    <h2>title</h2>
+    <div class="item">
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+    <ul>
+        <li class="item1">新闻标题-1</li>
+        <li class="item2">新闻标题-2</li>
+        <li class="item3">新闻标题-3</li>
+        <li class="item4">新闻标题-4</li>
+        <li class="item5">新闻标题-5</li>
+        <li class="item6">新闻标题-6</li>
+        <li class="item7">新闻标题-7</li>
+        <li class="item8">新闻标题-8</li>
+        <li class="item9">新闻标题-9</li>
+    </ul>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+    $(function() {
+        var element = $('ul');
+
+        // $('h2').appendTo(element);// h2元素整体移动到ul子元素末尾
+        //如果不想改变原有h2,则使用clone方式
+        // $('h2').clone().appendTo(element);
+
+        // $('.item').data('item', 'item');
+        // $('p').data('p', 'p');
+
+        // $('.item').clone(true, false).appendTo(element);
+        // console.log($('ul .item').data()); //Object {item: "item"}
+        // console.log($('ul p').data()); //Object {}
+
+        // $('h2').replaceWith('<p>hello</p>');
+        $('<p>hello</p>').replaceAll($('h2'));
+    });
+    </script>
+</body>
+</html>

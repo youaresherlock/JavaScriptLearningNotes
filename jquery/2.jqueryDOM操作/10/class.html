@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+在页面中操作DOM元素
+修改元素样式
+添加或修改class
+.addClass(names) One or more space-separated classes to be added to the class attribute of each matched element.
+.removeClass(names)
+.addClass(function) Type:Function(Interger index, String currentClassName)=>String
+A function returning one or more space-separated class names to be added to 
+the existing class name(s). Receives the index position of the element in the 
+set and the existing class name(s) as arguments. Within the function, this 
+refers to the current element in the set.
+判断是否包含某类:
+.hasClass(className) Determine whether any of the matched elements are assigned the given class
+
+.toggleClass(className], [,switch])
+className: One or more class names (separated by spaces) to be toggled for each element in the matched set.
+state: A Boolean (not just truthy/falsy) value to determine whether the class should be added or removed.
+
+.each()在jQuerObject上遍历,Iterate over a jQuery object, executing a function for each matched element.
+-->
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+        .box{width: 100px; height: 100px; background-color: #ccc;}
+        .red{background-color: red}
+        .b10{border: 10px solid #000}
+        .m10{margin: 10px}
+        .p10{padding: 10px}
+        .hide{display: none;}  /*此元素不会被显示*/
+    </style>
+</head>
+<body>
+    <div class="box hide" id="demo">div</div>
+    <ul>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+    </ul>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+        $(function(){
+            var element = $('#demo');
+
+            element.addClass('red b10 m10 p10');
+            element.removeClass('red m10 p10');
+
+            //function根据返回值增加类，同理removeClass(function)一样
+            element.addClass(function(index, className){
+                console.log(this, index,className);
+                return 'red';
+            });
+
+            $('li').addClass('red');
+
+            //存在删除，不存在增加，可以使用toggleClass切换类
+            // if(element.hasClass('hide')){
+            //     element.removeClass('hide');
+            // } else {
+            //     element.addClass('hide');
+            // }
+            // element.toggleClass('hide red'); //有hide类删除，没有red类增加
+
+            $('li').each(function(index, domElement){
+                $(this).toggleClass('red', index % 3 === 0); //将0, 3, 6变红
+            });
+        });
+    </script>
+</body>
+</html>

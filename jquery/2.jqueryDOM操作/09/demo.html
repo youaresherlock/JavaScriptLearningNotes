@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    在元素中存取数据
+    jQuery.data() Store arbitrary data
+    ,massociated with the specified element and/or return the value that was set.
+    获取数据的值: data([name])
+    设置数据的值: data(name, value) data(object)
+    删除数据: removeData([name])
+    判断是否有数据: jQuery.hasData(element)
+ -->
+<body>
+    <img id="logo" src="../logo.jpg" alt="jQuery logo" class="img-jquery" title="jQuery logo" data-id="1" data-data1="html data1" />
+    <img id="logo2" src="../logo.jpg" alt="jQuery logo" class="img-jquery2" title="jQuery logo" data-foo-42="bar" />
+    <input type="checkbox" id="check" tabIndex="1" style="width:50px; height: 50px;" title="Check this!" description="just a checkbox" />
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <!--<script src="../../../vendor/jquery-3.1.0.js"></script>-->
+    <script>
+    $(function() {
+        var img = $('img');
+        var checkbox = $('#check');
+
+        console.log(checkbox.data('description', 'some desc'));
+        console.log(checkbox.data('description'));
+        
+        checkbox.data('lastDesc', {
+            foo: 'bar'
+        });
+        console.log(checkbox.data('lastDesc')); //Object {foo: "bar"}
+        console.log(checkbox.data('last-desc')); //Object {foo: "bar"}
+        checkbox.removeData('lastDesc');
+        console.log(checkbox.data('lastDesc')); //undefined
+
+        img.data({
+            data1: 'data1',
+            data2: 'data2',
+            data3: 'data3'
+        });
+        console.log(img.data()); //Object {data1: "data1", data2: "data2", data3: "data3", id: 1}
+        img.removeData('data1 data2'); //.removeData([list]) list为string空格分割或Array数组
+        console.log(img.data()); //Object {data3: "data3", id: 1}
+        //img.removeData()删除所有数据
+        console.log($);
+        console.log($.hasData(img.get(0))); //true
+    });
+    </script>
+</body>
+
+</html>
