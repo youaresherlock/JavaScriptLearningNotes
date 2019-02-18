@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    快捷方法
+    blur change click dblclick focus focusin focusout keydown keypress 
+    keyup mousedown mouseenter mouseleave mousemove mouseout mouseover 
+    mouseup ready resize scroll select submit
+    快捷方法的使用
+    eventName([data,]handler)
+    eventName()
+ -->
+<body>
+    <ul>
+        <li class="item1">新闻标题-1</li>
+        <li class="item2">新闻标题-2</li>
+        <li class="item3">新闻标题-3</li>
+        <li class="item4">新闻标题-4</li>
+        <li class="item5">新闻标题-5</li>
+        <li class="item6">新闻标题-6</li>
+        <li class="item7">新闻标题-7</li>
+        <li class="item8">新闻标题-8</li>
+        <li class="item9">新闻标题-9</li>
+    </ul>
+    <button id="all">全部标记为已读</button>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+    $(function(){
+        $('li').click([1,3], function(event){
+            console.log("已读 %o", $(this));
+            console.log(event.data);
+        });
+
+        $('#all').click(function(){
+            console.log($('li').click());
+        })
+    });
+    </script>
+</body>
+</html>

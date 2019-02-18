@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+    <style>
+        .outer {
+            width: 200px;
+            height: 200px;
+            padding: 20px;
+            color: #fff;
+            background-color: green;
+        }
+
+        .inner {
+            width: 100px;
+            height: 100px;
+            margin: 30px auto;
+            padding: 20px;
+            color: #fff;
+            background-color: orange;
+        }
+
+        #outer2 {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<!-- 
+    hover方法
+    Bind one or two handlers to the matched elements, 
+    to be executed when the mouse pointer enters and leaves the elements.
+    .hover( handlerIn, handlerOut ) 可以看到鼠标移入移除都有事件处理函数
+    The .hover() method binds handlers for both mouseenter and mouseleave 
+    events. You can use it to simply apply behavior to an element during 
+    the time the mouse is within the element.
+    $(selector).hover(handlerIn, handlerOut)是下面的缩写
+    $(selector).mouseenter(handlerIn).mouseleave(handlerOut)
+ -->
+<body>
+    <div class="outer" id="outer1">
+        Outer 1
+        <div class="inner" id="inner1">Inner 1</div>
+    </div>
+    <div class="outer" id="outer2">
+        Outer 2
+        <div class="inner" id="inner2">Inner 2</div>
+    </div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+    $(function(){
+        function report(event) {
+            event.stopPropagation();
+            console.log(event.type + ' on ' + event.target.id);
+        }
+
+        // $('#outer1').on('mouseover mouseout', report);
+        // $('#inner1').on('mouseover mouseout', report);
+        //注 mouseover mouseout 表现是进入outer1后进入inner1,outer1的mouseout会触发，但是我们并不希望这样
+        // 因此jquery多了mouseenter和mouseleave事件 
+
+        /*可以看到鼠标从Outer1进入Inner 1只触发了mouseenter on outer1事件 */
+        $('#outer1').hover(report);
+        $('#inner1').hover(report);
+        
+    });
+    </script>
+</body>
+</html>

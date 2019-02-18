@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    浏览器事件模型
+    DOM 0级事件模型 DOM2级事件模型
+    0级事件:
+    <input type="button" onclick="doSomthing()"/>
+    input.onclick = function(){...}
+
+    事件的对象 IE中是window.event.srcElement,在Firefox中是event.target,Opera两者都可用
+    var target = event.target || event.srcElement;
+
+    event.stopPropagation();方法 同event.cancelBubble = true;
+    不再派发事件。终止事件在传播过程的捕获、目标处理气泡阶段进一步传播。调用
+    该方法后，该节点上处理该事件的处理程序将被调用，事件不再被派发到其他节点
+ -->
+<body>
+    <p id="example" onclick="console.log('Click');console.log('Click2');">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis 
+        praesentium, sapiente? Earum, molestiae rem. Enim, perspiciatis 
+        quisquam! A consequatur culpa error et, natus nobis placeat qui rem, 
+        suscipit tempora tenetur.
+    </p>
+    <div id="p1">
+        <div id="p1-1">
+            <div id="p1-1-1">
+                <div id="p1-1-1-1">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing 
+                        elit. Amet architecto beatae delectus enim ipsum iusto 
+                        laborum, libero minus perspiciatis quae quidem rem sed 
+                        soluta velit veniam voluptatem voluptates voluptatibus. 
+                        Repudiandae.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('example').onclick = function(event){
+            //  python中 None or "test"结果为"test",此原理相同
+            /*
+            firefox里的event跟IE里的不同,IE里的是全局变量window.event,随时可用
+            firefox里要用参数引导才能用，是运行时的临时变量event
+            var evt = evt || window.event; //firefox下window.event为null, IE下event为null
+            */
+            event = event || window.event; //可以从参数直接获取，没有参数可以从IE全局获取，兼容浏览器作用
+            console.log("click me"); //会覆盖html中的，如果重复增加会覆盖
+        };
+
+        document.getElementById('p1').onclick = function(event){
+            console.log('Click p1');
+        };
+
+        document.getElementById('p1-1').onclick = function(event){
+            console.log('Click p1-1');
+        };
+
+        document.getElementById('p1-1-1').onclick = function(event){
+            console.log('Click p1-1-1');
+        };
+
+        document.getElementById('p1-1-1-1').onclick = function(event){
+            event.stopPropagation(); //事件不往上派发 event.cancelBubble = true
+            console.log('Click p1-1-1-1');
+        };
+
+        //事件冒泡 从子元素依次到父元素触发
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    事件实例对象
+    事件实例对象的属性
+    altKey data bubbles detail button delegateTarget cancelable eventPhase
+    charCode metaKey(兼容问题) clientX clientY namespace offsetX offsetY ctrlKey 
+    currentTarget originalTarget originalEvent screenY shiftKey pageX(兼容问题)
+    pageY(兼容问题) timeStamp target(兼容问题) prevValue type view relatedTarget(兼容问题)
+    result which(兼容问题) screenX
+    带括号表示有兼容性问题,不过jquery做了兼容性处理，可以直接使用
+
+    事件实例对象的方法
+    preventDefault()
+    stopPropagation()
+    stopImmediatePropagation() 阻止冒泡和阻止后续绑定的事件处理函数
+
+    检测以上方法是否调用:
+    isDefaultPrevented() isPropagationStopped() isImmediatePropagationStopped()
+ -->
+<body>
+    <div id="p1">
+        <div id="p1-1">
+            <div id="p1-1-1">
+                <div id="p1-1-1-1">
+                    <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Amet architecto beatae delectus enim ipsum iusto laborum, 
+                    libero minus perspiciatis quae quidem rem sed soluta velit
+                    veniam voluptatem voluptates voluptatibus. Repudiandae.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+    $(function(){
+        // clicked jQuery.fn.init(1)
+        // clicked2 jQuery.fn.init(1)
+        // $('div').on('click', function(event){
+        //     event.stopPropagation(); //阻止冒泡
+        //     console.log('clicked %o', $(this));
+        // }).on('click', function(event){
+        //     console.log('clicked2 %o', $(this));
+        // });
+
+        // // clicked jQuery.fn.init(1) 
+        // $('div').on('click', function(event){
+        //    event.stopImmediatePropagation(); //立即阻止事件冒泡 下面的不会执行，结果只有clicked...
+        //     console.log('clicked %o', $(this));
+        // }).on('click', function(event){ 
+        //     console.log('clicked2 %o', $(this));
+        // });
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>demo</title>
+</head>
+<!-- 
+    触发事件
+    trigger(eventType[,data])
+    triggerHandler(eventType[,data])
+    区别:
+    triggerHandler相比trigger:
+    不会触发浏览器默认事件 不会产生事件冒泡 只触发jQuery对象集合中第一个元素的事件处理函数
+    返回的是事件处理函数的返回值，而不是jQuery对象,不可以使用链式语法
+    data: 是传递给event handler的额外的参数，可以接收
+ -->
+<body>
+    <ul>
+        <li class="item1">新闻标题-1</li>
+        <li class="item2">新闻标题-2</li>
+        <li class="item3">新闻标题-3</li>
+        <li class="item4">新闻标题-4</li>
+        <li class="item5">新闻标题-5</li>
+        <li class="item6">新闻标题-6</li>
+        <li class="item7">新闻标题-7</li>
+        <li class="item8">新闻标题-8</li>
+        <li class="item9">新闻标题-9</li>
+    </ul>
+    <button id="all">全部标记为已读</button>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script>
+    $(function(){
+        $('li').on('click', function(event, arg1, arg2){
+            console.log(arg1, arg2);
+            console.log("已读 %o", $(this));
+            return '123';
+        });
+
+        // 点击按钮后所有li元素点击事件都被触发
+        $('#all').on('click', function(){
+            $('li').trigger('click', [1, 2]); //返回值是jQuery元素集合
+            //$('li').triggerHandler('click); //只有第一个li元素被触发 返回值为"123"
+        });
+    });
+    </script>
+</body>
+</html>
