@@ -1,0 +1,189 @@
+jQuery插件机制
+jQuery主要有两种使用方法:
+1.在jQuery集合对象上面调用方法
+2. 直接调用jQuery方法
+
+扩展:
+扩展jQuery对象上的方法: jQuery.fn.extend()
+扩展jQuery工具方法: jQuery.extend()
+
+如何寻找自己需要的插件:
+http://plugins.jquery.com/
+https://www.npmjs.com
+https://github.com/
+搜索引擎
+
+如何使用jQuery插件
+引入插件:
+<script src="../../vendor/jquery.easing.js"></script>
+查看并实现示例代码
+阅读文档
+在项目中使用
+
+几个使用的jquery插件介绍:
+chosen   https://github.com/harvesthq/chosen
+
+如何编写一款插件:
+插件的命名
+    选择简单易记，符合功能描述的名称
+    文件名以jquery开头,比如jquery.xxx, jquery-xxx
+    可以包含公司或组织的名称
+
+处理复杂的参数
+function xxx(p1, p2, p3, p4, p5....){...}
+xxx({
+    p1: value1,
+    p2: value2,
+    ...
+})
+
+jQuery.extend(target [,object1][,objectN]); 
+将两个或多个对象合并进第一个对象中
+jQuery.fn.extend(object);给jQuery对象添加方法
+
+通过对象传递配置项参数
+function xxx(options) {
+    var defaultOptions = $.extend({
+        p1: defaultValue1,
+        p2: defaultValue2,
+        ...
+    }, options || {});  // 如果用户什么都没有传，则使用{}，使用默认的参数
+    ...
+}
+
+js匿名函数:
+1. 
+(function(){
+    alert('hello world');
+})();
+2. 
+(function(Options){
+    alert('hello world');
+})(para);
+3. 
+~function(){
+    alert('hello world');
+}();
+4.
+-function(){
+    alert('hello world');
+}();
+5.
++function(){
+    alert('hello world');
+}();
+6. 
+!function(){
+    alert('hello world');
+}();
+注: 好多种写法， 我也是醉了，这样对开发者不友好
+
+声明匿名函数 
+(function($){
+    //code
+})(jQuery)
+jQuery插件众多，你无法确定自己使用的变量或者方法名是否与其他插件重名，所以将
+所有插件代码封装到一个匿名函数当中。
+其实是为了保护$符号，不管外界是否引入了另外有干扰$的库，都不会干扰匿名函数中$就是jQuery
+的事实，因为它是作为参数被传进去的
+
+使用命名空间防止冲突
+错误示例:
+(function($){
+    $.fn.init = function(){...}
+})(jQuery);
+$('p').init();
+正确示例:
+(function($){
+    // 需要的方法定义到一个对象中
+    var methods = {
+        init: function(options){...},
+        destory: function(){...}
+    }
+    // jQuery对象上扩展一个方法
+    $.fn.coolLightbox = function(method){
+        if(methods[method]){
+            // Array.prototype.slice.call(arguments, 1);这句话是把调用方法的除第一个参数的其他所有参数截取出来
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if($.type(method) === 'object'){
+            return methods.init.apply(this, arguments);
+        } else{
+            $.error('Method' + method + 'does not exist!');
+        }
+    };
+})(jQuery);
+
+$('.lightbox').coolLightbox('init', {
+    p1: value1,
+    p2: value2
+})
+
+链式语法
+init: function(){
+    ...
+    retunr this;
+}
+
+小插件eg：
+插件实现功能
+实现一个修改颜色的小插件
+jquery.colorful.js
+(function($){
+    var namespace = 'colorful';
+
+    var methods = {
+        init: function(options) {
+            options = $.extend({}, $.fn[namespace].defaults, options);
+
+            if(options.font) {
+                this.css('color', options.color);
+            }
+            if(options.background){
+                this.css('background-color', options.color);
+            }
+
+            return this;
+        }
+    };
+
+    $.fn[namespace] = function(method) {
+        if(methods[method]) {
+            return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+        } else if($.type(method) == 'object'){
+            return methods.init.apply(this, arguments);
+        } else {
+            $.error('Method' + method + ' does not exist!');
+        }
+    }
+
+    $.fn[namespace].defaults = {
+        color: 'red',
+        background: false,
+        font: true
+    };
+})(jQuery);
+
+
+colorful.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+        A asperiores assumenda atque cum cupiditate debitis dolore 
+        doloribus illum inventore, magnam pariatur placeat similique 
+        suscipit! A accusantium cum dolore numquam optio.
+    </p>
+    <script src="../../vendor/jquery-1.12.4.js"></script>
+    <script src="jquery.colorful.js"></script>
+    <script>
+        $(function(){
+            $('p').colorful('init');
+        });
+    </script>
+</body>
+</html>
