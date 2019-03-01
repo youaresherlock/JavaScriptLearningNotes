@@ -1,7 +1,8 @@
 
 
 $(document).ready(function($){
-
+	// show()方法显示隐藏的被选元素,适用于通过jQuery方法和CSS中display:none隐藏的元素
+	// hide()方法隐藏被选元素, 该与CSS属性display:none类型
 	// 登录链接事件
 	// $("#loginLink").click(function(){
 	// 	// 显示弹出层遮罩
@@ -77,7 +78,7 @@ $(document).ready(function($){
 		$("#layer-close").click(function(){
 			// 弹出层关闭
 			hideLayer();
-			// 关闭的回调函数
+			// 关闭的回调函数, 有可能会留下错误消息，所以在弹出层关闭之后清除
 			closeCallback();
 		});
 	}
