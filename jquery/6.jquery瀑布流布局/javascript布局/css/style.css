@@ -1,0 +1,61 @@
+/* All Tag */
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+body {
+    background: #ddd;
+}
+
+img {
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: #444;
+}
+
+a:hover {
+    color: #999;
+}
+/* Wrap */
+
+#wrap {
+    position: relative;
+    width: auto; 
+    height: auto;
+    margin: 0 auto;
+}
+
+#wrap > div {
+    float: left;
+    box-sizing: border-box;
+    width: 280px;
+    height: auto; /*默认浏览器会计算出实际的高度*/
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+/* 发现图片溢出了, 因此要设置图片的宽度，高度会按照宽度等比例缩放*/
+
+#wrap > div > img{
+    /* width: 属性设置元素的宽度 % 定义基于包含块(父元素)的宽度的百分比宽度 */
+    width: 100%;
+}
+
+#wrap > div > a {
+    /* <a> <span>这两个标签如果不用display: block定义一下，那么定义
+    width、height等和长宽相关的css属性时会发现完全不生效 */
+    display: block; 
+    font-size: 18px; 
+    font-weight: bold;
+    /* line-height是通过line-box行框来体现，line-box所包含的内容应为"文本+文本顶部+文本底部"
+    文本顶部和文本底部是line-height和font-size差值的一半 */
+    line-height: 40px;
+    text-align: center;
+}
