@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket</title>
+    <script src="socket.io.js"></script>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <input type="text" id="sendTxt">
+    <button id="sendBtn">发送</button>
+    <script>
+        function showMessage(str, type) {
+            var div = document.createElement("div");
+            div.innerHTML = str;
+            if(type == "enter") {
+                div.style.color = "blue";
+            } else if(type == "leave") {
+                div.style.color = "red";
+            }
+            document.body.appendChild(div);
+        }
+
+        var socket = io("ws://193.112.48.106:3000/");
+
+        document.getElementById("sendBtn").onclick = function() {
+            var txt = document.getElementById("sendTxt").value;
+            if(txt) {
+                socket.emit('message', txt);
+            }
+        };
+
+        // socket.on('String', function(data)); 监听客户端发送的信息
+        socket.on('enter', function(data){
+            showMessage(data, 'enter');
+        });
+
+        socket.on('leave', function(data){
+            showMessage(data, 'leave');
+        } );
+
+        socket.on('mes', function(data){
+            showMessage(data, 'message');
+        })
+       
+    </script>
+</body>
+</html>

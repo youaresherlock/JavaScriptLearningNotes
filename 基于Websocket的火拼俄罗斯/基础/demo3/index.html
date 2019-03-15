@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket</title>
+</head>
+<body>
+    <h1>Chat Room</h1>
+    <input type="text" id="sendTxt">
+    <button id="sendBtn">发送</button>
+    <script>
+        function showMessage(str) {
+            var div = document.createElement("div");
+            div.innerHTML = str;
+            document.body.appendChild(div);
+        }
+
+        var websocket = new WebSocket("ws://193.112.48.106:8001/");
+        // Socket.onopen事件  连接建立时触发
+        websocket.onopen = function() {
+            console.log("websocket open");
+            document.getElementById("sendBtn").onclick = function() {
+                var txt = document.getElementById("sendTxt").value;
+                if(txt) {
+                    websocket.send(txt);
+                }
+            }
+        }
+        // 连接关闭时触发
+        websocket.onclose = function() {
+            console.log('websocket close');
+        }
+        // 客户端接收服务端数据时触发 e是MessageEvent
+        websocket.onmessage = function(e) {
+            console.log(e.data);
+            showMessage(e.data);
+        }
+    </script>
+</body>
+</html>

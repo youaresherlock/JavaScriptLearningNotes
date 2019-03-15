@@ -10,7 +10,7 @@
     <button id="sendBtn">发送</button>
     <div id="recv"></div>
     <script>
-        var websocket = new WebSocket("ws://193.112.48.106:8888/");
+        var websocket = new WebSocket("ws://echo.websocket.org/");
         // Socket.onopen 事件 连接建立时触发
         websocket.onopen = function() {
             console.log('websocket open');

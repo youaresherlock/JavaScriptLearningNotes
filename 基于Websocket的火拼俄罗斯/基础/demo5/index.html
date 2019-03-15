@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>websocket</title>
+    <script src="socket.io.js"></script>
+</head>
+<body>
+    <script>
+        // 建立一个socket连接 io('http://xxx.xxx.xxx.xxx:3000')实际上是通过websocket协议通信的,相当于io('ws://xxx.xxx.xxx.xxx:3000')
+         var socket = io('http://193.112.48.106:3000');
+         // 监听服务端发送的消息 string参数与服务端emit第一个参数相同
+         socket.on('news', function(data) {
+             console.log(data);
+             socket.emit('my other event', {my : 'data'}); // 向服务器发送消息
+         })
+    </script>
+</body>
+</html>
