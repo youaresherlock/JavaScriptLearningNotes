@@ -1,0 +1,55 @@
+/* 总体是20行10列大小，每个小块是20*20大小 */
+.game {
+    width: 200px;
+    height: 400px;
+    background-color: #F2FAFF;
+    border-left: 0.5px solid blue;
+    border-right: 0.5px solid blue;
+    border-bottom: 0.5px solid blue;
+    position: absolute;
+    top: 10px;  /*position属性为static,设置top属性不会产生任何效果*/
+    left: 10px;
+}
+
+ /* .next为4行4列  */
+.next {
+    width: 80px;
+    height: 80px;
+    background-color:  #F2FAFF;
+    position: absolute;
+    top: 10px;
+    left: 250px;
+    border: 0.5px solid blue;
+}
+
+.info {
+    position: absolute;
+    top: 100px;
+    left: 250px;
+}
+
+.none, .current, .done {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    /* 默认为content-box, 即元素的填充和边框布局和绘制指定宽度和高度除外
+    border-box对元素指定宽度和高度包括padding和border的指定 */
+    box-sizing: border-box;
+}
+
+/* 没有方块的区域 */
+.none {
+    background-color: #F2FAFF;
+}
+
+/* 用户正在操作的方块 */
+.current {
+    background-color: pink;
+    border: 1px solid red;
+}
+
+/* 已经落下来的方块 */
+.done {
+    background-color: gray;
+    border: 1px solid black;
+}

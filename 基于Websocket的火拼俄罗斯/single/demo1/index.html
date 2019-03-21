@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>俄罗斯方块</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 游戏区域 -->
+    <div class="game" id="game"></div>
+    <!-- 下一个方块显示区域 -->
+    <div class="next" id="next"></div>
+    <!-- 显示信息div -->
+    <div class="info">
+        <div>已用时: <span id="time">0</span>s</div>
+        <div>已得分: <span id="score">0</span>分</div>
+    </div>
+    <!-- 方块， 公共逻辑，比如左移等等-->
+    <script src="js/square.js"></script>
+    <!-- 生成方块，工厂 -->
+    <script src="js/squareFactory.js"></script>
+    <!-- 俄罗斯方块游戏核心 -->
+    <script src="js/game.js"></script>
+    <!-- 我的游戏区域中逻辑 -->
+    <script src="js/local.js"></script>
+    <!-- 对方游戏区域中的逻辑 -->
+    <script src="js/remote.js"></script>
+    <!-- 调用local.js,remote.js 顶层js -->
+    <script src="js/script.js"></script>
+</body>
+</html>
