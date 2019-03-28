@@ -1,4 +1,4 @@
-var Local = function() {
+var Local = function(socket) {
     //游戏对象
     var game;
     // 事件间隔
@@ -14,14 +14,19 @@ var Local = function() {
         document.onkeydown = function(e) {
             if(e.keyCode == 38) { //up 旋转
                 game.rotate();
+                socket.emit('rotate');
             } else if(e.keyCode == 39) { // right
                 game.right();
+                socket.emit('right');
             } else if(e.keyCode == 40) { // down
                 game.down();
+                socket.emit('down');
             } else if(e.keyCode == 37) { // left
                 game.left();
+                socket.emit('left');
             } else if(e.keyCode == 32) { // space 坠落
                 game.fall();
+                socket.emit('fall');
             }
         };
     };
@@ -30,25 +35,33 @@ var Local = function() {
         timeFunc();
         if(!game.down()) {
             game.fixed();
+            socket.emit('fixed');
             var line = game.checkClear();
             if(line) {
                 game.addScore(line);
-                var allscore = document.getElementById("allscore");
-                console.log(allscore);
-                if(allscore.classList.contains("play")) {
-                    allscore.className = "restart";
-                } else {
-                    allscore.className = "play";
+                socket.emit('line', line);
+                // 根据己方消行数量来给对方添加干扰line行
+                if(line > 1) {
+                    var bottomLines = generateBottomLine(line);
+                    socket.emit('bottomLines', bottomLines);
                 }
             }
             var gameOver = game.checkGameOver();
             if(gameOver) {
                 game.gameover(false);
+                // 客户端之一输掉游戏会通知对方
+                document.getElementById("remote_gameover").innerHTML = "你赢了!";
+                socket.emit('lose');
                 stop();
             } else {
                 // 下一个方块的种类，下一个方块的旋转次数
-                game.performNext(generateType(), generateDir());
+                var t = generateType();
+                var d = generateDir();
+                game.performNext(t, d);
+                socket.emit('next', {type: t, dir: d});
             }
+        } else {
+            socket.emit('down');
         }
     }
     // 计时函数
@@ -58,9 +71,8 @@ var Local = function() {
             timeCount = 0;
             time = time + 1;
             game.setTime(time);
-            if(time % 10 == 0) {
-                game.addTailLines(generateBottomLine(1));
-            }
+            // 同步双方时间
+            socket.emit('time', time);
         }
     }
     // 随机生成干扰行
@@ -88,16 +100,22 @@ var Local = function() {
     // 开始
     var start = function() {
         var doms = {
-            gameDiv: document.getElementById('game'),
-            nextDiv: document.getElementById('next'),
-            timeDiv: document.getElementById('time'),
-            scoreDiv: document.getElementById('score'),
-            resultDiv: document.getElementById("gameover")
+            gameDiv: document.getElementById('local_game'),
+            nextDiv: document.getElementById('local_next'),
+            timeDiv: document.getElementById('local_time'),
+            scoreDiv: document.getElementById('local_score'),
+            resultDiv: document.getElementById("local_gameover")
         };
         game = new Game();
-        game.init(doms, generateType(), generateDir());
+        var type = generateType();
+        var dir = generateDir();
+        game.init(doms, type, dir);
+        socket.emit('init', {type: type, dir: dir});
         bindKeyEvent();
-        game.performNext(generateType(), generateDir());
+        var t = generateType();
+        var d = generateDir();
+        game.performNext(t, d);
+        socket.emit('next', {type: t, dir: d});
         timer = setInterval(move, INTERVAL);
     };
     //结束
@@ -109,9 +127,27 @@ var Local = function() {
         }
         // 清除键盘事件
         document.onkeydown = null;
-        var alltime = document.getElementById("alltime");
-        alltime.className = "";
-    }
-    //导出API
-    this.start = start;
+    };
+
+    socket.on('start', function() {
+        document.getElementById('waiting').innerHTML = '';
+        start();
+    });
+
+    // 对方发送他已经输了的消息
+    socket.on('lose', function() {
+        game.gameover(true);
+        stop();
+    });
+
+    socket.on('leave', function() {
+        document.getElementById('local_gameover').innerHTML = '对方掉线';
+        document.getElementById('remote_gameover').innerHTML = '已掉线';
+        stop();
+    });
+
+    socket.on('bottomLines', function(data) {
+        game.addTailLines(data);
+        socket.emit('addTailLines', data);
+    });
 }

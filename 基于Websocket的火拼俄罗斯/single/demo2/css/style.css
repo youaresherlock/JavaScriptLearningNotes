@@ -44,14 +44,13 @@
 
 #nextTxt {
     width: 80px;
-    background-color: #fefefe;
     border: 2px solid lightblue;
     box-shadow:0px 0px 2px 2px lightblue;
     border-radius: 2px;
-    background-color: lightblue;
+    background-image: none;
     text-align: center;
     color: #eee;
-    font-family: "Arial Black", Gadget, sans-serif;/*字体*/
+    font-family: pixelFont;/*字体*/
     font-style: normal;/*字体样式*/
     font-variant: normal;/*小写字母*/
     font-size: 14px;
@@ -249,3 +248,23 @@ a{
 a:hover {
     color:pink;
 }     
+
+@font-face 
+{
+    font-family: pixelFont;
+    src: url("../font/pixel.ttf");
+}
+
+#gameover {
+    color: lightblue;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-family: pixelFont;
+    font-size: 20em;
+    text-align: center;
+}
+
+
+
+

@@ -219,9 +219,9 @@ var Game = function() {
     // 游戏结束
     var gameover = function(win) {
         if(win) {
-            resultDiv.innerHTML = "YOU WIN!";
+            resultDiv.innerHTML = "你赢了!";
         } else {
-            resultDiv.innerHTML = "YOU LOST!";
+            resultDiv.innerHTML = "你输了!";
         }
     };
     // 底部增加行 对战双方消行后可以给对方界面底部增加干扰行
