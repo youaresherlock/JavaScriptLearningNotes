@@ -1,0 +1,9 @@
+内容
+es6 常量、作用域、箭头函数、默认参数、对象代理
+
+环境准备
+安装
+windows
+1. 安装git
+2. 执行git clone https://github.com/cucygh/es6-webpack.github
+3. cd es6-webpack && npm install(先要在windows安装node)
