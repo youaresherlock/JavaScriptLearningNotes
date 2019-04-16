@@ -1,0 +1,33 @@
+XMLHttpRequest对象用于和服务器交换数据
+
+请求:
+向服务器发送请求可以使用XMLHttpRequest对象的open()和send()方法:
+open(method, url, async) 请求类型、文件在服务器上的位置、异步或同步，默认异步
+send(string) 将请求发送到服务器,string参数仅用于POST请求
+setRequestHeader(header, value) 向请求添加HTTP头 header: 规定头的名称,value:规定头的值
+
+响应:使用XMLHttpRequest对象的属性
+responseText 获得字符串形式的响应数据
+responseXML 获得XML形式的响应数据
+
+onreadystatechange事件:
+当请求被发送到服务器时，需要执行一些基于响应的任务。
+每当readyState改变时，就会触发onreadystatechange事件
+readyState属性存有XMLHtpRequest的状态信息.从0到4发生变化
+    0: 请求未初始化
+    1: 服务器连接已建立
+    2: 请求已接受
+    3: 请求处理中
+    4: 请求已完成，且响应已就绪
+status 200: "OK"  404: 未找到页面
+eg:
+// 发送get请求 发送消息可以向URL添加信息
+xmlhttp.open("GET", "/try/ajax/demo_get2.php?fname=Henry&lname=Ford", true);
+xmlhttp.send();
+如果需要像HTML表单那样POST数据，请使用setRequestHeader()添加HTTP头，然后send()方法
+中规定发送的数据
+//发送post请求
+xmlhttp.open("POST", "/try/ajax/demo_post2.php", true);
+xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+xmlhttp.send("fname=Henry&lanme=Ford");
+

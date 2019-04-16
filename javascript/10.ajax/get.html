@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>get请求</title>
+    <script>
+        function loadXMLDoc() {
+            var xmlhttp;
+            if(window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // IE6, IE5浏览器执行代码
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function() {
+                if(xmlhttp.readyState == 4) {
+                    if(xmlhttp.status == 200) {
+                        document.getElementById("myDiv").innerHTML = xmlhttp.responseText;
+                    } else {
+                        //失败，根据响应码判断失败原因
+                        document.getElementById("myDiv").innerHTML = xmlhttp.status;
+                    }
+                } 
+            }
+            // 跨域请求可以使用jsonp,这里得不到数据
+            xmlhttp.open("GET", "http://www.runoob.com/try/ajax/demo_get.php?t=" + Math.random(), true);
+            xmlhttp.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>AJAX</h2>
+    <button type="button" onclick="loadXMLDoc()">请求数据</button>
+    <p>多次点击按钮，可以看到时间变化</p>
+    <div id="myDiv"></div>
+</body>
+</html>
