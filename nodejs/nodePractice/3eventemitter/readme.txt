@@ -1,0 +1,5 @@
+Node.js EventEmitter
+Node.js所有的异步I/O操作在完成时都会发送一个事件到事件队列
+Node.js里面的许多都会分发事，所有这些产生事件的对象都是events.EventEmitter的实例
+events模块只了一个对象:events.EventEmitter.EventEmitter和核心就是事件触发与
+监听器的封装
