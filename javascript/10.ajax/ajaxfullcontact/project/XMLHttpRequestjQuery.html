@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>demo</title>
+    <style>
+        body, input, button, select, h1{
+            font-size: 20px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>员工查询</h1>
+    <label>请输入员工编号: </label>
+    <input type="text" id="keyword">
+    <button id="search">查询</button>
+    <p id="searchResult"></p>
+
+    <h1>员工新建</h1>
+    <label>请输入员工姓名: </label>
+    <input type="text" id="staffName"><br>
+    <label>请输入员工编号: </label>
+    <input type="text" id="staffNumber"><br>
+    <label>请输入员工性别: </label>
+    <select id="staffSex">
+        <option>男</option>
+        <option>女</option>
+    </select><br>
+    <label>请输入员工职位: </label>
+    <input type="text" id="staffJob"><br>
+    <button id="save">保存</button>
+    <p id="createResult"></p>
+    <script src="https://cdn.bootcss.com/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#search").click(function() {
+                $.ajax({
+                    type: "GET",
+                    url: "serverjson.php?number=" + $("#keyword").val(),
+                    //dataType default: Intelligent Guess(xml, json, script, or html)
+                    dataType: "json",
+                    // 这两种方式都可以
+                    // success: function(data) {
+                    //     if(data.success) {
+                    //         $("#searchResult").html(data.msg);
+                    //     } else {
+                    //         $("#searchResult").html("出现错误: " + data.msg);
+                    //     }
+                    // },
+                    // error: function(jqXHR) {
+                    //     alert("发生错误: " + jqXHR.status);
+                    // }
+                }).done(function(data){
+                    if(data.success) {
+                        $("#searchResult").html(data.msg);
+                    } else {
+                        $("#searchResult").html("出现错误: " + data.msg);
+                    }
+                }).fail(function(jqXHR) {
+                    alert("发生错误: " + jqXHR.status);
+                });
+            });
+        });
+
+        $(document).ready(function() {
+            $("#save").click(function() {
+                $.ajax({
+                    type: "POST",
+                    url: "serverjson.php",
+                    dataType: "json",
+                    data: {
+                        name: $("#staffName").val(), 
+                        number: $("#staffNumber").val(), 
+                        sex: $("#staffSex").val(), 
+                        job: $("#staffJob").val(), 
+                    },
+                    success: function(data) {
+                        if(data.success) {
+                            $("#createResult").html(data.msg);
+                        } else {
+                            $("#createResult").html("出现错误: " + data.msg);
+                        }
+                    },
+                    error: function(jqXHR) {
+                        alert("发生错误: " + jqXHR.status);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
