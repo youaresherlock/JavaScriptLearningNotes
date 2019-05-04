@@ -1,0 +1,9 @@
+我们要为路由提供请求的URL和其他需要的GET及POST参数，随后路由需要根据这些数据执行相应的代码。
+因为我们需要查看HTTP请求从中提取出请求的URL以及GET/POST参数
+我们呢需要的所有数据都会包含在request对象中该对象作为onRequest()回到函数的第一个参数传递
+但是为了解析这些数据我们需要额外的NODe.js模块,他们分别是url和querystring模块
+http://localhost:8888/start?foo=bar&hello=world
+url.parse(string).query结果是foo=bar&hello=world
+url.parse(string).pathname是/start
+querystring.parse(queryString)["foo"]是bar
+querystring.parse(queryString)["hello"]是world

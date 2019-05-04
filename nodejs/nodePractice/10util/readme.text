@@ -1,0 +1,5 @@
+//util是一个Node.js核心模块提供常见函数的集合,用于弥补核心JS的功能过于精简的不足
+//util.inherits util.inherits(constructor, superConstructor)是一个实现对象间原型继承的函数
+//JavaScript的面向对象特性是基于原型的,与常见的基于类的不同.js没有提供对象继承的语言级别特性,而是通过
+//原型复制来实现的
+

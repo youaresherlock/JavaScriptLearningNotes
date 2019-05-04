@@ -1,0 +1,17 @@
+<!--创建一个用于上传文件的表单,使用POST方法,表单enctype属性设置为multipart/form-data -->
+<html>
+<head>
+<title>文件上传表单</title>
+</head>
+<body>
+	<h3>文件上传: </h3>
+	选择一个文件上传: <br/>
+	<!--在form元素的语法中, enctype表明提交数据的格式 -->
+	<!--只有method="post"时才使用enctype属性 
+	默认是application/x-www-form-urlencoded 当使用有文件上传控件的表单时,该值multipart/form-data时必需的 -->
+	<form action="/file_upload" method="POST" enctype="multipart/form-data">
+	<!--size属性规定以字符数计<input> 元素的可见宽度 -->
+	<input type="file" name="image" size="50"/> <br>
+	<input type="submit" value="上传文件"/>	
+</body>
+</html>

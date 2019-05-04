@@ -15,3 +15,20 @@ Photoshop预设
 3. 图层
 4. 信息
 5. 字符
+
+
+切图的优化
+1. 颜色代替图片的使用 利用css平铺效果实现长图的使用(宽度1px的背景)
+2. 雪碧图的制作
+3. 字体图标的使用
+
+
+快捷键的使用
+1. 操作类快捷键
+2. 工具类快捷键
+
+
+切图辅助
+1. MarkDown PxCooke(www.fancynode.com.cn/pxcook)
+2. TinyPNG压缩图片的工具
+3. 前端自动化 webpack等
