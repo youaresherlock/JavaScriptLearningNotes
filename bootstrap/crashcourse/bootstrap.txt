@@ -1,0 +1,118 @@
+mooc bootstrap快速入门课程笔记
+
+1-1 课程介绍
+bootstrap是Twitter公司开发基于HTML、CSS、JavaScript的前端框架
+为实现web应用程序快速开发提供的一套前端工具包
+响应式布局
+移动设备优先
+
+内容:
+bootstrap3.3.7为例
+bootstrap全局样式用法
+viewport的意义
+栅格化布局用法
+字体、图标
+实现响应式布局的开发
+
+中文文档: https://v3.bootcss.com/
+英文文档: https://getbootstrap.com/docs/3.3
+
+
+2-2 bootstrap环境搭建
+下载用于生产环境的Bootstrap压缩包
+
+
+3-1 Bootstrap中的全局样式
+Bootstrap全局样式的特点:
+代码整洁 风格统一 美观易用
+Bootstrap提供了大量的全局样式,基本的HTML元素均可以通过class设置
+样式并得到增强效果
+
+
+3-2 Bootstrap中的排版-标题
+标题(h1~h6)
+副标题(small)
+
+
+3-3 Bootstrap中的排版-文本
+段落、对齐方式、文本标记
+
+
+4-4 单位
+-px相对于显示屏幕分辨率的长度单位
+-px的大小无法跟随屏幕放大缩小
+-所有浏览器都支持PX单位 
+
+-em 相对于当前文本内的字体尺寸
+-1em=16px(但不完全是)
+-em会继承父级元素的字体大小
+-IE的部分浏览器并不支持em
+
+-rem与em类似,相对于HTML根节点的字体单位
+-rem会继承根元素的字体大小
+-html{font-size: 62.5%} 16px * 62.5% = 10px 10px就是1个rem 1.6rem字体大小就是16px
+
+4-5 图标
+字体图标-特点
+-体积小便于加载
+-无需重复设计
+-方便引用
+
+
+5-1 Bootstrap组件介绍
+-一个网站、一个APP或者一个系统的构建
+-一些零件的组合
+Bootstrap提供了无数可复用的组件，包括字体图标、下拉菜单、导航、警告框、弹出框等多种功能
+
+
+5-2 Bootstrap组件中的怪异属性
+1、role 是HTML5的标签属性，可以用于标识一个普通的标签，使之语义化,方便浏览器对其具体功能进行识别
+    比如盲文浏览工具识别
+2、aria-label 为特殊阅读器设置的属性
+3、tabIndex
+4、data- html5中的自定义的属性
+5、sr-only属性 screen reader only 仅供屏幕阅读器 盲人等无法辨别图标,屏幕阅读器需要找到能辨识
+的文本说明然后"读"出来给用户听
+
+
+5-6 导航
+1、以一个带有class.nav的无序列列表开始
+2、.nav-tabs代表可切换的导航
+3、.nav-pills代表胶囊导航
+4、nav-pills代表胶囊导航
+
+
+5-7 分页
+1、.pagination在父元素中添加表示分页
+2、.pager放置在翻页区域
+3、.previous把链接向左对齐, .next把链接向右对齐
+
+
+5-8 进度条
+1、.progress表示进度条
+2、.通过状态类改变进度条的颜色
+3、.progress-bar-striped使得进度条颜色渐变
+
+
+5-9 列表
+最简单的列表组仅仅是一个带有多个列表条目的无序列表，另外还需要设置适当的类。
+1、.list-group代表列表组
+2、.badge代表状态数，添加徽章
+3、.active代表选中状态
+
+
+5-10 面板 
+虽然不总是必须，但是某些时候你可能需要将某些 DOM 内容放到一个盒子里。
+对于这种情况，可以试试面板组件。用于弹窗和提示信息等场景
+
+默认的 .panel 组件所做的只是设置基本的边框（border）和内补（padding）来包含内容。
+通过 .panel-heading 可以很简单地为面板加入一个标题容器。
+把按钮或次要的文本放入 .panel-footer 容器内
+1、.panel代表面板
+2、.panel-body代表面板内容
+3、.panel-footer代表面板的注脚
+
+
+6-1 Bootstrap中的插件
+1、Bootstrap插件依赖Bootstrap.js 
+2、Bootstrap.js基于jQuery
