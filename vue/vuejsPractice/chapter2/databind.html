@@ -14,9 +14,20 @@
     <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
     <script>
         var app = new Vue({
-            el: '#app',
+            // el: '#app',
+            // 用于指定一个页面中已存在的DOM元素来挂在Vue实例
+            el: document.getElementById("app"),
             data: {
-                name: ''
+                name: 'Clarence'
+            },
+            // Vue的生命周期钩子
+            created: function() {
+                console.log(document.getElementById("app")) // 数据的观测，但尚未挂载
+                console.log(this.$el) // undefined 
+            },
+            mounted: function() {
+                console.log(document.getElementById("app"))
+                console.log(this.$el)
             }
         })
     </script>
