@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性</title>
+</head>
+<body>
+    <div id="app">
+        {{ reverseText }}
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+          el: '#app',
+          data: {
+            package1 : [
+                {
+                    name: 'iPhone 7',
+                    price: 8000,
+                    count: 2
+                }, 
+                {
+                    name: 'iPad',
+                    price: 3000,
+                    count: 1
+                }
+            ],
+            package2 : [
+                {
+                    name: 'Apple',
+                    price: 1,
+                    count: 5
+                }, 
+                {
+                    name: 'iPad',
+                    price: 3000,
+                    count: 1
+                }
+            ],
+          }, 
+          computed: {
+              reverseText: function() {
+                  //this指向当前实例
+                  return this.text.split(',').reverse().join(',')
+              }
+          }
+      })
+    </script>
+</body>
+</html>

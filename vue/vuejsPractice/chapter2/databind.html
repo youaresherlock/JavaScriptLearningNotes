@@ -25,6 +25,7 @@
                 console.log(document.getElementById("app")) // 数据的观测，但尚未挂载
                 console.log(this.$el) // undefined 
             },
+            // el挂在到实例后调用,一般第一个业务逻辑会在这里开始
             mounted: function() {
                 console.log(document.getElementById("app"))
                 console.log(this.$el)

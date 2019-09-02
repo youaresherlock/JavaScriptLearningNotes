@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind指令</title>
+    <!-- v-bind的基本用途是动态更新html元素上的属性 -->
+</head>
+<body>
+    <div id="app">
+        <a v-bind:href="url">链接</a>
+        <img v-bind:src="imgUrl">
+        <!-- 语法糖 -->
+        <a :href="url">链接</a>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+          el: '#app',
+          data: {
+              url: 'https://www.github.com', 
+              imgUrl: 'https://img01.sogoucdn.com/app/a/100520024/85b811908aefe3140cc84ab839288de6.com'
+          }
+      })
+    </script>
+</body>
+</html>
