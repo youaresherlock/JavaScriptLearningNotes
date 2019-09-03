@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性缓存</title>
+</head>
+<body>
+    <div id="app">
+        {{ reversedText() }}
+        {{ now }}
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+      var app = new Vue({
+          el: '#app',
+          data: {
+            text: '123,456',
+          }, 
+        //   使用methods里的方法也可以与计算属性起到童谣的作用 
+        // 计算属性是基于它依赖缓存的. 一个计算属性锁依赖的数据发生变化时,它才会重新取值
+          methods: {
+              reversedText: function() {
+                  return this.text.split(',').reverse().join(',')
+              }
+          },
+         computed: {
+             now: function() {
+                 return Date.now()
+             }
+         }  
+      })
+    </script>
+</body>
+</html>

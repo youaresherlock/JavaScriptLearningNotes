@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-bind:class</title>
+    <!-- v-bind:class设置一个对象，可以动态地切换class -->
+</head>
+<body>
+    <div id="app">
+        <!-- 当:class的表达式过长或逻辑复杂时,还可以绑定一个计算属性-->
+      <div :class="classes"></div>
+      <!-- <div class="btn-large btn-disabled"></div> -->
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+       var app = new Vue({
+           el: "#app", 
+           data: {
+              size: 'large', 
+              disabled: true,
+              classes: {
+                  'active': true, 
+                  'test': true
+              }
+           }, 
+        //    表达式较长或逻辑复杂, 应该尽可能优先使用计算属性
+        //    computed: {
+        //        classes: function() {
+        //            return {
+        //             //    这里class写成数组形式是为了+号
+        //                ['btn-' + this.size]: this.size != '', 
+        //                ['btn-disabled']: this.disabled
+        //            }
+        //        }
+        //    }
+       })
+    </script>
+</body>
+</html>

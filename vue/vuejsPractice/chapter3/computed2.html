@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="app">
-        {{ reverseText }}
+        {{ prices }}
     </div>
     <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
     <script>
@@ -29,21 +29,28 @@
             ],
             package2 : [
                 {
-                    name: 'Apple',
-                    price: 1,
+                    name: 'apple',
+                    price: 3000,
                     count: 5
                 }, 
                 {
-                    name: 'iPad',
-                    price: 3000,
-                    count: 1
+                    name: 'banana', 
+                    price: 2, 
+                    count: 10
                 }
             ],
           }, 
           computed: {
-              reverseText: function() {
-                  //this指向当前实例
-                  return this.text.split(',').reverse().join(',')
+              // 每一个计算属性包含一个getter和setter,默认用法是getter
+              prices: function() {
+                  var prices = 0;
+                  for (var i = 0; i < this.package1.length; i++) {
+                      prices += this.package1[i].price * this.package1[i].count;
+                  }
+                  for (var i = 0; i < this.package2.length; i++) {
+                      prices += this.package2[i].price * this.package2[i].count;
+                  }
+                  return prices 
               }
           }
       })

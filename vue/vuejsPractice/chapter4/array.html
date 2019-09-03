@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数组语法</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 当应用多个class, 可以使用数组语法, 给:class绑定一个数组 -->
+        <div :class="[activeCls, 'test', errorCls]"></div>
+        <!-- 根据三元表达式切换class -->
+        <div :class="[isActive ? activeCls : '', errorCls]"></div>
+        <!-- 可以在数组语法中使用对象语法 -->
+        <div :class="[{'active': isActive}, errorCls]"></div>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+       var app = new Vue({
+           el: "#app", 
+           data: {
+              isActive: true,
+              activeCls: 'active', 
+              errorCls: 'error'
+           }
+       })
+    </script>
+</body>
+</html>
