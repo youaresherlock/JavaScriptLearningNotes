@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+    <!-- 需要将一个数组遍历或枚举一个对象循环显示时, 就会用到列表渲染指令 -->
+</head>
+<body>
+    <div id="app">
+    <li v-for="book in books">{{ book.name }}</li>
+    <!-- v-for表达式支持一个可选参数作为当前项的索引 -->
+    <li v-for="(book, index) in books">{{ index }} - {{ book.name }}</li>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {name: '<<Java核心编程>>'}, 
+                    {name: '<<Python核心编程>>'}, 
+                    {name: '<<Golang核心编程>>'}, 
+                ]
+            }
+        });
+        // app.books = app.books.filter(function(item) {
+        //     return item.name.match(/Python/);
+        // });
+        app.books.splice(3, 1, {
+            name: "<<Lua编程实战>>"
+        });
+    </script>
+</body>
+</html>

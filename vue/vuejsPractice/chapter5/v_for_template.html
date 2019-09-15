@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for template</title>
+    <!-- 需要将一个数组遍历或枚举一个对象循环显示时, 就会用到列表渲染指令 -->
+</head>
+<body>
+    <div id="app">
+    <ul>
+        <!-- v-for可以用在template标签中, 将多个元素进行渲染 -->
+        <template v-for="book in books">
+            <li>书名: {{ book.name }}</li>
+            <li>作者: {{ book.author }}</li>
+        </template>
+        <!-- 除了数组,对象的属性也可以遍历 -->
+        <span v-for="value in user">{{ value }}</span>
+        <!-- 遍历对象属性时,有两个可选参数,分别是键名和索引 -->
+        <li v-for="(value, key, index) in user">
+            {{ index }} - {{ key }}: {{ value }}
+        </li>
+        <!-- v-for还可以迭代整数 -->
+        <li v-for="n in 10">{{ n }}</li>
+    </ul>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                books: [
+                    {
+                        name: '<<Java核心编程>>',
+                        author: 'Clarence'
+                    }, 
+                    {
+                        name: '<<Python核心编程>>',
+                        author: "Bom"
+                    },
+                    {
+                        name: '<<Golang核心编程>>',
+                        author: "Bob"
+                    },
+                ],
+                user: {
+                    name: "Sampson", 
+                    gender: "M",
+                    age: 26
+                }
+            }
+        })
+    </script>
+</body>
+</html>

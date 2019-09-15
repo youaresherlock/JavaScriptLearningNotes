@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template</title>
+</head>
+<body>
+    <div id="app">
+        <!-- Vue在渲染元素时,出于效率考虑,会尽可能地复用已有的元素而非重新渲染 -->
+      <template v-if="type === 'name'">
+          <label>用户名:    </label>
+          <!-- 给两个input元素都增加key后,就不会复用了,切换类型时键入的内容也会被删除 -->
+          <input placeholder="输入用户名" key="name-input">
+      </template>
+      <template v-else>
+            <label>邮箱:    </label>
+            <input placeholder="输入邮箱" key="mail-input">
+      </template>
+      <button @click="handleToggleClick">切换输入类型</button>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                type: 'name'
+            },
+            methods: {
+                handleToggleClick: function() {
+                    this.type = this.type === 'name' ? 'mail' : 'name';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-cloak</title>
+    <style>
+        /* v-cloak是一个解决初始化慢导致页面闪动的最佳实践 */
+    [v-cloak] {
+        display: none;
+    }
+    </style>
+</head>
+<!-- 
+    当网速较慢， Vue.js文件还没加载完时，在页面上会显示{{ message }}
+    的字样,直到Vue创建实例, 编译模板时, DOM才会被替换, 所以这个过程屏幕是
+    有闪动的
+    v-cloak会在Vue实例结束编译时从绑定的HTML元素上移除,经常和CSS的display: none;配合使用
+ -->
+<body>
+    <div id="app" v-cloak>
+        {{ message }}
+        <div v-once>
+            <!-- v-once定义它的元素或组件只渲染一次, 包括元素或组件的所有子节点.   -->
+            <span>{{ message }}</span>
+        </div>
+        <p v-if="status === 1">当status为1时显示该行</p>
+        <p v-else-if="status === 2">当status为2时显示该行</p>
+        <p v-else>否则显示该行</p>
+        <template v-if="status === 1">
+            <!-- 
+            如果一次判断的是多个元素, 可以在Vue内置的template元素上使用条件
+            指令,最终渲染的结果不会包含该元素  -->
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </template>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '这是一段文本',
+                status: 1
+            }
+        })
+    </script>
+</body>
+</html>
