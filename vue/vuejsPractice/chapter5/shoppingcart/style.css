@@ -22,3 +22,9 @@ th {
     font-weight: 600;
     white-space: nowrap;
 }
+
+#total {
+    margin-top: 10px;
+    color: lightcoral;
+    font-weight: 600; 
+}
