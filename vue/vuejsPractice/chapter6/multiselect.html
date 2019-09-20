@@ -5,21 +5,26 @@
     <meta name="viewport" content="width=
     , initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>radio</title>
+    <title>select</title>
 </head>
 <body>
-    <!-- v-bind动态更新html元素上的属性, 直接使用v-bind绑定一个布尔类型的值, 为真选中 -->
+    <!-- 
+        select 属性 multiple 
+    -->
     <div id="app">
-        <!-- <input type="radio" v-bind:checked="picked"> -->
-        <input type="radio" v-bind:checked="picked">
-        <label>单选按钮</label>
+        <select v-model="selected" multiple>
+            <option>html</option>
+            <option value="js">JavaScript</option>
+            <option>css</option>
+        </select>
+        <p>选择的项是: {{ selected }}</p>
     </div>
     <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
             data: {
-             picked: true
+             selected: ['js', 'html']
             }
         })
     </script>

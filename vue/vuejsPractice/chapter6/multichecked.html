@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>checkbox</title>
+</head>
+<body>
+   <!-- v-model与value一起，多个勾选框绑定到同一个数组类型的数据, 勾选时value的值会自动push在数组当中 -->
+   <div id="app">
+       <input type="checkbox" v-model="checked" value="html" id="html">
+       <label for="html">HTML</label>
+       <br>
+       <input type="checkbox" v-model="checked" value="js" id="js">
+       <label for="js">JavaScript</label>
+       <br>
+       <input type="checkbox" v-model="checked" value="css" id="css">
+       <label for="css">CSS</label>
+       <br>
+       <p>选择的项是: {{ checked }}</p>
+   </div>
+   <!-- 需要绑定一个动态的数据, 可以用v-vind来实现 -->
+   <div id="radio_app"> 
+    <input type="radio" v-model="picked" :value="value">
+    <label>单选按钮</label>
+    <p>{{ picked }}</p>
+    <p>{{ value }}</p>
+    </div>
+    <div id="select_app">
+        <select v-model="selected">
+            <option :value="{ number: 123 }">123</option>
+        </select>
+        {{ selected.number }}
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+             checked: ['html', 'css']
+            }
+        });
+        var radioapp = new Vue({
+            el: '#radio_app',
+            data: {
+                picked: false,
+                value: 123
+            }
+        });
+        var selectapp = new Vue({
+            el: '#select_app',
+            data: {
+                // 当选中时, selectapp.selected是一个Object,app.selected.number = 123
+               selected: ''
+            }
+        })
+    </script>
+</body>
+</html>
