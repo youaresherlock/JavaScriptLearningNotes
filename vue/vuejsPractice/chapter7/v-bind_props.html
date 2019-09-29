@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>props</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 有时候，传递的数据并不是直接写死的, 而是来自父级的动态数据, 可以使用指令v-bind来动态绑定props的值 -->
+        <input type="text" v-model="parentMessage">
+        <my-component :message="parentMessage"></my-component>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+       Vue.component('my-component', {
+           props: ['message'],
+           template: '<div>{{ message }} </div>'
+       });
+       var app = new Vue({
+           el: '#app',
+           data: {
+             parentMessage: ''
+           }
+       })
+    </script>
+</body>
+</html>

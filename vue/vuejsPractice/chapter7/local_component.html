@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>my-component</title>
+</head>
+<body>
+    <!-- 在Vue实例中，使用components选项可以局部注册组件，注册后的组件只有在该实例
+    作用域下有效 -->
+    <div id="app">
+        <my-component></my-component>
+        <!-- 常见限制的元素select ol ul table -->
+        <!-- Vue组件的模板在某些情况下会受到HTML的限制，table标签内只允许thead,tbody等标签，
+        直接使用组件是无效的，可以使用特殊的is属性来挂在组件 -->
+        <table>
+            <tbody is="my-component"></tbody>
+        </table>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        var Child = {
+            template: '<div>局部注册组件的内容</div>'
+        };
+
+        var app = new Vue({
+            el: '#app',
+            components: {
+                'my-component': Child
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义事件</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 当子组件需要向父组件传递数据时，就要用到自定义事件 
+        子组件用$emit来触发事件, 父组件用$on来监听子组件的事件
+        父组件也可以直接在子组件的自定义标签上使用v-on来监听子组件触发的自定义事件
+        -->
+        <p>总数: {{ total }}</p>
+        <my-component
+            @increase="handleGetTotal"
+            @reduce="handleGetTotal"></my-component>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: '\
+            <div>\
+                <button @click="handleIncrease">+1</button>\
+                <button @click="handleReduce">-1</button>\
+            </div>',
+            data: function() {
+                return {
+                    counter: 0
+                }
+            },
+            methods: {
+                handleIncrease: function() {
+                    this.counter++;
+                    this.$emit('increase', this.counter);
+                },
+                handleReduce: function() {
+                    this.counter--;
+                    this.$emit('reduce', this.counter);
+                }
+            }
+        });
+
+        var app = new Vue({
+            el: '#app', 
+            data: {
+                total: 0
+            },
+            methods: {
+                handleGetTotal: function(total) {
+                    this.total = total;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

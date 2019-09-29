@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>template</title>
+</head>
+<body>
+    <div id="app">
+        <my-component></my-component>
+    </div>
+    <script src="https://www.unpkg.com/vue@2.6.10/dist/vue.min.js"></script>
+    <script>
+        Vue.component('my-component', {
+            template: '<div>{{ message }}</div>',
+            // 一个组件的 data 选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立的拷贝
+            data: function() {
+                return {
+                    message: '组件内容'
+                }
+            }
+        });
+        
+        var app = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>
