@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day04</title>
+    <style>
+        body {
+            background-color: gray;
+        }
+        li {
+            background-color: skyblue;
+            opacity: 0.7;
+            border-radius: 4px; 
+            border-style: solid;
+            border-width: 5px; 
+            border-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h3>明星列表</h3>
+        <ul>
+            <li v-for="star in stars">{{ star }}</li>
+        </ul>
+        <h3>学生列表</h3>
+        <ul>
+            <!-- key为索引值 -->
+            <li v-for="item, key in students">
+                <h4>索引值: {{ key }}---学生名字: {{ item.studentName }}</h4>
+                <p>年龄: {{ item.age }}---学校: {{ item.school }}</p>
+            </li>
+        </ul>
+        <h3>循环对象</h3>
+        <ul>
+            <li v-for="item, key in students[0]">{{ key }}---{{ item }}</li>
+        </ul>
+        <h3>条件+循环渲染{将偶数年龄的学生渲染出来}</h3>
+        <ol>
+            <li v-for="item, index in students" v-if="item.age%2==0" :key="index">
+                <h4>索引值: {{ index }}---学生名字: {{ item.studentName }}</h4>
+                <p>年龄: {{ item.age }}---学校: {{ item.school }}</p>
+            </li>
+        </ol>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                stars: ['蔡徐坤', "苏有朋", "范冰冰", "李晨"],
+                students: [
+                    {
+                        studentName: "小明",
+                        age: 16, 
+                        school: "清华",
+                        imgheader: "imgeurl",
+                    },
+                    {
+                        studentName: "小红",
+                        age: 17, 
+                        school: "上海交大"
+                    },
+                    {
+                        studentName: "小黑",
+                        age: 18, 
+                        school: "复旦"
+                    },
+                    {
+                        studentName: "小明",
+                        age: 20, 
+                        school: "西安交大"
+                    },
+                ],
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day04</title>
+</head>
+<body>
+    <div id="app">
+        <img v-bind:src="image_url" alt="图片">
+        <!-- v-bind简写 -->
+        <!-- <img :src="image_url" alt="图片"> -->
+    </div>
+    <script src="js/vue.min.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app", 
+            data: {
+                image_url: "https://i03piccdn.sogoucdn.com/27bc526262dba0bd",
+            }
+        })
+    </script>
+</body>
+</html>

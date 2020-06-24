@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day02</title>
+    <style>
+        body {
+            background:#73b3ea;
+            opacity: 0.9;
+        }
+        #pane {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+            opacity: 0.7;
+            border-radius: 4px; 
+            border-style: solid;
+            border-width: 5px; 
+            border-color: pink;
+        }
+        button {
+            width: 200px;
+            background-color: skyblue;
+            opacity: 0.7;
+            border: 5px solid pink;
+            border-radius: 4px;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- view -->
+    <div id="app">
+        <h3 v-if="tab==1">首页</h3>
+        <h3 v-else-if="tab==2">新闻页</h3>
+        <h3 v-else>个人中心</h3>
+        <button @click="showPane">切换显示内容</button>
+        <button @click="tabChange" data-id="1">首页</button>
+        <button @click="tabChange" data-id="2">新闻</button>
+        <button @click="tabChange" data-id="3">个人</button>
+        <div id="pane" v-show="isShow">
+            Hello, Vue
+        </div>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: true,
+                tab: 1
+            },
+            methods: {
+                showPane: function(e) {
+                    this.isShow = !this.isShow 
+                }, 
+                tabChange: function(e){
+                    this.tab = e.target.dataset.id 
+                }
+            }
+        })
+        /*
+        v-if: 不显示时,第一次就直接不渲染, 如果内容已经显示将其改为不显示,将内容直接从Dom去除
+        v-show: 不显示时,就会改为display:none,但是会渲染在Dom上
+        */
+    </script>
+</body>
+</html>
