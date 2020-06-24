@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #login {
+            background-color: skyblue;
+        }
+        #register {
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ msg }}</h1>
+        <!-- 一次性插入, 不再修改 -->
+        <h1 v-once>{{ msg }}</h1>
+        <!-- 插入HTML内容 -->
+        <h1>{{ htmlTxt }}</h1>
+        <h1 v-html="htmlTxt"></h1>
+        <!-- 修改属性的内容 -->
+        <div :id="idname">
+            <h1>登录</h1>
+        </div>
+        <!-- 表达式应用 -->
+        <div>
+            {{ firstname + lastname }}
+        </div>
+        <!-- 三元运算符 -->
+        <div>   
+            {{ isVip?"欢迎Vip":"普通用户请充值" }}
+        </div>
+        <!-- 事件的绑定 -->
+        <button v-on:click="changeBg">改变背景</button>
+        <button @click="changeBg">改变背景</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello Vue",
+                htmlTxt: "<span>hello</span>",
+                idname: "login",
+                firstname: "clarence",
+                lastname: "sampson",
+                isVip: true,
+            },
+            methods: {
+                changeBg: ()=>{
+                    document.body.style.background = "skyblue";
+                }
+            }
+        })
+    </script>
+</body>
+</html>
