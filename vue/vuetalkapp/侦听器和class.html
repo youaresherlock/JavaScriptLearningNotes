@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day07</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ msg }}</h1>
+        <h1>{{ reverseMsg }}</h1>
+        <ul>
+            <li v-for="item in arr">{{ item }}</li>
+        </ul>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "hello Vue",
+                arr: ["小明", "小红", "小黑"]
+            },
+            computed: {
+                // reverseMsg: function(){
+                //     return this.msg.split("").reverse().join("")
+                // }
+                reverseMsg: {
+                    get: function(){
+                        return this.msg.split("").reverse().join("")
+                    },
+                    set: function(value){
+                        console.log(value)
+                    }
+                }
+            },
+            watch: {
+                // 监听msg的数据变化 val更新的值
+                msg: function(val) {
+                    console.log("监听事件----msg")
+                    console.log(val)
+                },
+                arr: function(val){
+                    console.log("监听事件---arr")
+                    console.log(val)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
