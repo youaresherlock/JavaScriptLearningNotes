@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .page {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+        .active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 通过对象的方式决定是否存在某个类 -->
+        <div class="page" v-bind:class="{active:isTrue}">
+
+        </div>
+        <!-- 放置数组 -->
+        <div class="page" :class="styleArr"></div>
+        <!-- 放置字符串 -->
+        <div class="page" :class="styleStr"></div>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isTrue: true,
+                styleArr: ['col-xs-12', 'red-bg'],
+                styleStr: "abc cba qwer",
+            }
+        })
+    </script>
+</body>
+</html>
