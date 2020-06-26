@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div style="width: 100px;height: 100px; background: skyblue;" :style="cssObject"></div>
+        <!-- css内联样式变量拼接 -->
+        <div style="width: 100px;height: 100px; background: skyblue;" :style="{border: borderWidth + 'px solid red', padding: paddingWidth + 'px'}"></div>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                cssObject: {
+                    border: '10px solid red',
+                },
+                borderWidth: 10,
+                paddingWidth: 30,
+            }
+        })
+    </script>
+</body>
+</html>
