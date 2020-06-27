@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day08</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .page {
+            width: 100vw; 
+            height: 100vh;
+            background-color: #efefef;
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .rMenu {
+            width: 50vw; 
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            /* transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜。 */
+            transform: translateX(100vw);
+            background-color: skyblue;
+            /* transition属性设置元素当过渡效果 */
+            transition: transform 0.5s;
+        }
+        .active {
+            transform: translateX(50vw);
+        }
+    </style>
+</head>
+<body>
+    <!-- view -->
+    <div id="app">
+        <div class="page">
+            首页
+            <button type="button" @click="toggleMenu">切换侧边栏</button>
+        </div>
+        <div class="rMenu" :class="{active: isShow}">
+            侧边栏
+        </div>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: false 
+            },
+            methods: {
+                toggleMenu: function(){
+                    this.isShow = !this.isShow; 
+                }
+            }
+        })
+    </script>
+</body>
+</html>

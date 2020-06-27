@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>es6匿名函数</title>
+</head>
+<body>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var obj1 = {
+            username: "zxc", 
+            age: 18,
+
+            fnTest1: function(param){
+                alert(this);
+
+                // 演示作用域的嵌套 
+                // setTimeout(function(){
+                //     // this指向window对象
+                //     alert(this);
+                // }, 1000);
+                setTimeout(()=>{
+                    alert(this);
+                }, 1000);
+            }
+        };
+
+        obj1.fnTest1("ES5");
+    </script>
+</body>
+</html>
