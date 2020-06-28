@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day09事件绑定</title>
+</head>
+<body>
+    <!-- view -->
+    <div id="app">
+        <h1>点击次数: {{ count }}</h1>
+        <!-- v-on指令监听DOM事件,并在触发时运行一些js代码 -->
+        <button type="button" @click="count += 1">点击</button>
+        <!-- 获取事件对象 -->
+        <button @click="clickEvent">点击2</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                count: 0,
+            },
+            methods: {
+                clickEvent: function(event) {
+                    this.count ++;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
