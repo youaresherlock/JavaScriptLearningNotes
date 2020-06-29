@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day10</title>
+</head>
+<body>
+    <!-- view -->
+    <div id="app">
+        <h1>单行文本输入框</h1>
+        <p>{{ username }}</p>
+        <input type="text" name="username" v-model="username" value="">
+        <h1>多行文本输入框</h1>
+        <textarea v-model="username" name="" id="" cols="30" rows="10">
+        </textarea>
+        <h1>复选框: 选择喜欢的水果</h1>
+        <span v-for="item in fruits">
+            {{ item }}
+        <input type="checkbox" name="fruits" v-model="checkFruits" :value="item">
+        </span>
+        <h2>{{ checkFruits }}</h2>
+
+
+        <h1>单选框: 选择最喜欢的水果</h1>
+        <span v-for="item in fruits">
+            {{ item }}
+        <input type="radio" name="fruits" v-model="radioFruits" :value="item">
+        </span>
+        <h2>{{ radioFruits }}</h2>
+
+        <h1>选项框: 选择你居住的城市</h1>
+        <select name="" id="" v-model="chooseCity">
+            <option v-for="item in citys" :value="item">{{ item }}</option>
+        </select>
+        <h3>{{ chooseCity }}</h3>
+
+        <h1>选项框: 选择你喜欢的城市</h1>
+        <select name="" id="" v-model="moreCity" multiple="multiple">
+            <option v-for="item in citys" :value="item">{{ item }}</option>
+        </select>
+        <h3>{{ moreCity }}</h3>
+
+        <h1>将字符串变为数字</h1>
+        <input type="text" name="age" v-model.number="age" value="">
+
+        <img :src="image_code_url" @click="generate_image_code" alt="图形验证码" class="pic_code" style="width:110px;height:30px;">
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                username: "clarence",
+                fruits: ['apple', 'pear', 'banana', 'chunk'],
+                checkFruits: [],
+                radioFruits: "",
+                image_code_url: "",
+                citys: ['北京', '上海', '深圳', '广州'],
+                chooseCity: "",
+                moreCity: [],
+                age: 16,
+            },
+            watch: {
+                age: function(val){
+                    console.log(val)
+                }
+            },
+            methods: {
+                generate_image_code: function(){
+                    this.image_code_url = "https://i03piccdn.sogoucdn.com/27bc526262dba0bd"
+                }
+            }
+        })
+    </script>
+</body>
+</html>
