@@ -8,6 +8,7 @@
         * {
             margin: 0;
             padding: 0;
+            color: pink;
             box-sizing: border-box;
         }
         .page {
@@ -25,13 +26,16 @@
             left: 0;
             top: 0;
             /* transform 属性向元素应用 2D 或 3D 转换。该属性允许我们对元素进行旋转、缩放、移动或倾斜。 */
-            transform: translateX(100vw);
-            background-color: skyblue;
-            /* transition属性设置元素当过渡效果 */
-            transition: transform 0.5s;
-        }
-        .active {
             transform: translateX(50vw);
+            background-color: skyblue;
+        }
+        .slideRight-enter-active, .slideRight-leave-active {
+            transition: all 1s;
+        }
+        .slideRight-enter, .slideRight-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        transform: translateX(100vw);
+        opacity: 0.4;
+        background-color: pink;
         }
     </style>
 </head>
@@ -42,16 +46,18 @@
             首页
             <button type="button" @click="toggleMenu">切换侧边栏</button>
         </div>
-        <div class="rMenu" :class="{active: isShow}">
-            侧边栏
-        </div>
+        <transition name='slideRight'>
+            <div class="rMenu" v-if="isShow">
+                侧边栏
+            </div>
+        </transition>
     </div>
     <script src="js/vue.min.js"></script>
     <script>
         var app = new Vue({
             el: "#app",
             data: {
-                isShow: false 
+                isShow: true 
             },
             methods: {
                 toggleMenu: function(){

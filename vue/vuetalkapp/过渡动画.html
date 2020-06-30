@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>day11</title>
+    <style>
+        .content {
+            width: 200px;
+            height: 200px;
+            background-color: skyblue;
+        }
+        button {
+            background-color: skyblue; 
+            border: 2px solid pink;
+            opacity: 0.8;
+            border-radius: 4px;
+        }
+        .fade-enter-active, .fade-leave-active {
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0;
+        }
+        .slide-enter-active, .slide-leave-active {
+            transition: all 1s;
+        }
+        .slide-enter, .slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        transform: translateX(80vw);
+        opacity: 0.5;
+        background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <!-- view -->
+    <div id="app">
+        <!-- 
+            属性name会跟框架追加的类名一致
+         -->
+        <transition name="slide">
+            <div class="content" v-if="isShow"></div>
+        </transition>
+       <button @click="toggleEvent">切换内容</button>
+    </div>
+    <script src="js/vue.min.js"></script>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                isShow: true,
+            },
+            methods: {
+                toggleEvent: function(){
+                    this.isShow = !this.isShow;
+                }
+            }
+        })
+    </script>
+</body>
+</html>
